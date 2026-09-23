@@ -1,0 +1,1472 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>STET Appearing Declaration - TRE 4.0</title>
+
+<style>
+*{box-sizing:border-box}
+
+body{
+    margin:0;
+    background:#e9e9e9;
+    color:#111;
+    font-family:"Noto Sans Devanagari","Mangal","Arial Unicode MS",Arial,sans-serif;
+    line-height:1.6;
+}
+
+.toolbar{
+    width:210mm;
+    margin:15px auto;
+    display:flex;
+    justify-content:flex-end;
+    gap:8px;
+}
+
+button{
+    border:0;
+    border-radius:6px;
+    padding:9px 15px;
+    cursor:pointer;
+    font:inherit;
+}
+
+.print-btn{
+    background:#166534;
+    color:#fff;
+}
+
+.clear-btn{
+    background:#1d4ed8;
+    color:#fff;
+}
+
+.page{
+    width:210mm;
+    min-height:297mm;
+    margin:0 auto 20px;
+    padding:12mm 14mm;
+    background:#fff;
+    box-shadow:0 0 8px rgba(0,0,0,.18);
+}
+
+.title{
+    text-align:center;
+    font-size:17px;
+    font-weight:700;
+    text-decoration:underline;
+    line-height:1.45;
+    margin-bottom:25px;
+}
+
+.heading{
+    text-align:center;
+    font-size:19px;
+    font-weight:700;
+    text-decoration:underline;
+    margin-bottom:18px;
+}
+
+.line{
+    margin:9px 0;
+    font-size:16px;
+    text-align:justify;
+}
+
+input[type="text"]{
+    border:0;
+    border-bottom:1px dotted #222;
+    outline:0;
+    font:inherit;
+    background:transparent;
+    padding:0 4px;
+}
+
+.full-input{width:220px}
+.medium-input{width:145px}
+.small-input{width:95px}
+
+.note{
+    margin-top:15px;
+    font-size:15.5px;
+    text-align:justify;
+}
+
+.table-wrap{
+    margin-top:22px;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    table-layout:fixed;
+    font-size:15px;
+}
+
+th,td{
+    border:1px solid #222;
+    padding:7px;
+    text-align:center;
+    vertical-align:middle;
+}
+
+th{
+    font-weight:700;
+}
+
+.lang{
+    width:21%;
+}
+
+.name-col{
+    width:26%;
+}
+
+td[contenteditable="true"]{
+    height:55px;
+    outline:0;
+}
+
+td[contenteditable="true"]:focus{
+    background:#f0fdf4;
+}
+
+/* =========================
+   SIGNATURE SECTION
+========================= */
+
+.signature{
+    width:48%;
+    margin-left:auto;
+    margin-top:42px;
+    font-size:16px;
+}
+
+.sig-row{
+    display:flex;
+    align-items:baseline;
+    margin:18px 0;
+}
+
+.sig-label{
+    width:80px;
+    font-weight:600;
+}
+
+.sig-line{
+    flex:1;
+    border-bottom:1px dotted #222;
+    min-height:25px;
+    outline:0;
+}
+
+/* Upload box */
+
+.signature-upload{
+    margin-top:18px;
+    padding:13px;
+    border:1px dashed #777;
+    border-radius:8px;
+    background:#fafafa;
+}
+
+.upload-title{
+    display:block;
+    font-weight:700;
+    margin-bottom:7px;
+}
+
+.signature-upload input[type="file"]{
+    display:block;
+    width:100%;
+    font:inherit;
+    padding:5px 0;
+}
+
+.upload-help{
+    color:#666;
+    font-size:12px;
+    margin-top:4px;
+}
+
+/* Preview */
+
+.signature-preview-wrap{
+    display:none;
+    margin-top:12px;
+}
+
+.signature-preview{
+    max-width:220px;
+    max-height:85px;
+    padding:5px;
+    border:1px solid #ddd;
+    background-color:#fff;
+    background-image:
+        linear-gradient(45deg,#eee 25%,transparent 25%),
+        linear-gradient(-45deg,#eee 25%,transparent 25%),
+        linear-gradient(45deg,transparent 75%,#eee 75%),
+        linear-gradient(-45deg,transparent 75%,#eee 75%);
+    background-size:16px 16px;
+    background-position:
+        0 0,
+        0 8px,
+        8px -8px,
+        -8px 0;
+}
+
+/* Signature tools */
+
+.signature-tools{
+    display:none;
+    margin-top:10px;
+    flex-wrap:wrap;
+    gap:6px;
+}
+
+.signature-tools button{
+    padding:6px 10px;
+    font-size:13px;
+    color:#fff;
+    background:#166534;
+}
+
+.signature-tools .gray{
+    background:#555;
+}
+
+.signature-tools .orange{
+    background:#c2410c;
+}
+
+.signature-tools .red{
+    background:#b91c1c;
+}
+
+/* Editor */
+
+.editor{
+    display:none;
+    margin-top:12px;
+    padding:10px;
+    border:1px solid #ddd;
+    border-radius:7px;
+    background:#fff;
+}
+
+.editor-title{
+    font-weight:700;
+    margin-bottom:8px;
+}
+
+.canvas-box{
+    overflow:auto;
+    text-align:center;
+    padding:8px;
+    border:1px solid #ccc;
+    background:
+        repeating-conic-gradient(
+            #eee 0% 25%,
+            #fff 0% 50%
+        ) 50% / 16px 16px;
+}
+
+#signatureCanvas{
+    max-width:100%;
+    height:auto;
+    touch-action:none;
+}
+
+/* =========================
+   WHATSAPP
+========================= */
+
+.channel-box{
+    margin:25px auto 0;
+    max-width:650px;
+    padding:15px;
+    border:1px solid #25D366;
+    border-radius:10px;
+    background:#f0fff5;
+    text-align:center;
+}
+
+.channel-box h3{
+    margin:0 0 5px;
+}
+
+.channel-box p{
+    margin:5px 0 12px;
+    font-size:14px;
+}
+
+.join-btn{
+    background:#25D366;
+    color:#fff;
+    font-weight:700;
+}
+
+.join-check{
+    display:block;
+    margin-top:9px;
+    font-size:14px;
+}
+
+.join-check input{
+    width:auto;
+    accent-color:#25D366;
+}
+
+.instructions{
+    margin-top:25px;
+    border-top:1px solid #ddd;
+    padding-top:7px;
+    color:#555;
+    font-size:12px;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:700px){
+
+    body{
+        background:#fff;
+    }
+
+    .toolbar,
+    .page{
+        width:100%;
+    }
+
+    .page{
+        padding:20px;
+        box-shadow:none;
+    }
+
+    .toolbar{
+        padding:10px;
+        margin:0;
+    }
+
+    .full-input,
+    .medium-input,
+    .small-input{
+        max-width:100%;
+    }
+
+    .signature{
+        width:100%;
+    }
+}
+
+/* =========================
+   PRINT
+========================= */
+
+@media print{
+
+    @page{
+        size:A4 portrait;
+        margin:12mm;
+    }
+
+    body{
+        background:#fff;
+    }
+
+    .toolbar,
+    .channel-box,
+    .instructions,
+    .signature-upload{
+        display:none !important;
+    }
+
+    .page{
+        width:210mm;
+        min-height:297mm;
+        margin:0;
+        padding:0;
+        box-shadow:none;
+    }
+
+    .signature-preview-wrap{
+        display:block !important;
+    }
+
+    .signature-preview{
+        border:0 !important;
+        padding:0 !important;
+        max-width:190px;
+        max-height:75px;
+        background:none !important;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- =========================
+     TOOLBAR
+========================= -->
+
+<div class="toolbar">
+
+    <button
+        class="clear-btn"
+        onclick="clearForm()">
+        फॉर्म साफ करें
+    </button>
+
+    <button
+        class="print-btn"
+        onclick="printForm()">
+        🖨️ Print / PDF
+    </button>
+
+</div>
+
+
+<!-- =========================
+     MAIN PAGE
+========================= -->
+
+<div class="page">
+
+    <div class="title">
+        विद्यालय अध्यापक (TRE-4.0) भर्ती परीक्षा हेतु माध्यमिक शिक्षक पात्रता परीक्षा<br>
+        (STET), 2026 में सम्मिलित होने वाले अभ्यर्थियों के लिए स्व-घोषणा
+    </div>
+
+    <div class="heading">
+        घोषणा
+    </div>
+
+
+    <div class="line">
+
+        प्रमाणित किया जाता है कि मैं
+        श्री/सुश्री/श्रीमती
+
+        <input
+            class="full-input"
+            type="text"
+            placeholder="अभ्यर्थी का नाम">
+
+        पिता
+
+        <input
+            class="medium-input"
+            type="text"
+            placeholder="पिता का नाम">
+
+    </div>
+
+
+    <div class="line">
+
+        माता
+
+        <input
+            class="medium-input"
+            type="text"
+            placeholder="माता का नाम">
+
+        जन्म तिथि
+
+        <input
+            class="small-input"
+            type="text"
+            placeholder="DD/MM/YYYY">
+
+        आधार संख्या
+
+        <input
+            class="medium-input"
+            type="text"
+            maxlength="12"
+            inputmode="numeric"
+            placeholder="आधार संख्या">
+
+    </div>
+
+
+    <div class="line">
+
+        ग्राम/शहर
+
+        <input
+            class="medium-input"
+            type="text"
+            placeholder="ग्राम/शहर">
+
+        डाकघर
+
+        <input
+            class="medium-input"
+            type="text"
+            placeholder="डाकघर">
+
+        थाना
+
+        <input
+            class="medium-input"
+            type="text"
+            placeholder="थाना">
+
+    </div>
+
+
+    <div class="line">
+
+        जिला
+
+        <input
+            class="medium-input"
+            type="text"
+            placeholder="जिला">
+
+        राज्य
+
+        <input
+            class="medium-input"
+            type="text"
+            value="बिहार">
+
+        का निवासी हूँ। मैं माध्यमिक शिक्षक पात्रता परीक्षा
+        (STET), 2026 का अभ्यर्थी हूँ एवं मेरा आवेदन संख्या
+
+        <input
+            class="medium-input"
+            type="text"
+            placeholder="आवेदन संख्या">
+
+        है। उक्त आवेदन की छायाप्रति संलग्न है।
+
+    </div>
+
+
+    <div class="note">
+
+        <strong>नोट:-</strong>
+
+        मैं घोषणा करता/करती हूँ कि उक्त जानकारी सत्य एवं वैध है।
+        यदि कोई भी जानकारी असत्य पाई जाती है, तो मेरी उम्मीदवारी
+        रद्द करने का अधिकार आयोग के पास होगा, जिसके लिए मैं स्वयं
+        जिम्मेवार रहूँगा/रहूँगी।
+
+    </div>
+
+
+    <!-- =========================
+         NAME TABLE
+    ========================= -->
+
+    <div class="table-wrap">
+
+        <table>
+
+            <tr>
+
+                <th class="lang"></th>
+
+                <th class="name-col">
+                    अभ्यर्थी का नाम
+                </th>
+
+                <th class="name-col">
+                    पिता का नाम
+                </th>
+
+                <th class="name-col">
+                    माता का नाम
+                </th>
+
+            </tr>
+
+
+            <tr>
+
+                <td>
+                    हिन्दी में
+                </td>
+
+                <td contenteditable="true"></td>
+
+                <td contenteditable="true"></td>
+
+                <td contenteditable="true"></td>
+
+            </tr>
+
+
+            <tr>
+
+                <td>
+                    अंग्रेजी में<br>
+                    <strong>(Capital Letter)</strong>
+                </td>
+
+                <td contenteditable="true"></td>
+
+                <td contenteditable="true"></td>
+
+                <td contenteditable="true"></td>
+
+            </tr>
+
+        </table>
+
+    </div>
+
+
+    <!-- =========================
+         SIGNATURE
+    ========================= -->
+
+    <div class="signature">
+
+        <div class="sig-row">
+
+            <div class="sig-label">
+                नाम:-
+            </div>
+
+            <div
+                class="sig-line"
+                contenteditable="true">
+            </div>
+
+        </div>
+
+
+        <div class="sig-row">
+
+            <div class="sig-label">
+                हस्ताक्षर:-
+            </div>
+
+            <div
+                class="sig-line"
+                contenteditable="true">
+            </div>
+
+        </div>
+
+
+        <!-- SIGNATURE UPLOAD -->
+
+        <div class="signature-upload">
+
+            <label
+                class="upload-title"
+                for="signatureFile">
+
+                ✍️ अपना हस्ताक्षर Upload करें
+
+            </label>
+
+
+            <input
+                type="file"
+                id="signatureFile"
+                accept="image/png,image/jpeg,image/jpg">
+
+
+            <div class="upload-help">
+
+                PNG/JPG • अधिकतम 2 MB •
+                साफ हस्ताक्षर वाली फोटो चुनें
+
+            </div>
+
+
+            <!-- SIGNATURE PREVIEW -->
+
+            <div
+                class="signature-preview-wrap"
+                id="signaturePreviewWrap">
+
+                <strong>
+                    Signature Preview:
+                </strong>
+
+                <br>
+
+                <img
+                    id="signaturePreview"
+                    class="signature-preview"
+                    alt="Signature Preview">
+
+            </div>
+
+
+            <!-- SIGNATURE TOOLS -->
+
+            <div
+                class="signature-tools"
+                id="signatureTools">
+
+
+                <button
+                    type="button"
+                    onclick="removeBackground()">
+
+                    🪄 Background Eraser
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="gray"
+                    onclick="restoreOriginal()">
+
+                    ↩️ Original
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="orange"
+                    onclick="cropSignature()">
+
+                    ✂️ Crop
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="red"
+                    onclick="removeSignature()">
+
+                    🗑️ Remove
+
+                </button>
+
+            </div>
+
+
+            <!-- EDITOR -->
+
+            <div
+                class="editor"
+                id="signatureEditor">
+
+                <div class="editor-title">
+                    Signature Editor
+                </div>
+
+
+                <div class="canvas-box">
+
+                    <canvas
+                        id="signatureCanvas">
+                    </canvas>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         WHATSAPP JOIN
+    ========================= -->
+
+    <div
+        class="channel-box"
+        id="channelBox">
+
+        <h3>
+            📢 DEO Office WhatsApp Channel
+        </h3>
+
+
+        <p>
+
+            शिक्षा विभाग एवं शिक्षक संबंधी महत्वपूर्ण अपडेट पाने के लिए
+            हमारे WhatsApp Channel से जुड़ें।
+
+        </p>
+
+
+        <button
+            type="button"
+            class="join-btn"
+            onclick="openChannel()">
+
+            📲 WhatsApp Channel Join करें
+
+        </button>
+
+
+        <label class="join-check">
+
+            <input
+                type="checkbox"
+                id="joinedCheck">
+
+            मैंने DEO Office WhatsApp Channel Join कर लिया है।
+
+        </label>
+
+    </div>
+
+
+    <div class="instructions">
+
+        घोषणा-पत्र को A4 आकार में
+        Print / Save as PDF किया जा सकता है।
+
+    </div>
+
+</div>
+
+
+<script>
+
+/* =====================================================
+   WHATSAPP CHANNEL
+===================================================== */
+
+const CHANNEL_URL =
+"https://whatsapp.com/channel/0029VaIhMoY35fM4YK5xrz3P";
+
+let channelOpened = false;
+
+
+function openChannel(){
+
+    channelOpened = true;
+
+    window.open(
+        CHANNEL_URL,
+        "_blank",
+        "noopener,noreferrer"
+    );
+
+}
+
+
+/* =====================================================
+   SIGNATURE VARIABLES
+===================================================== */
+
+let originalImage = null;
+
+const canvas =
+document.getElementById("signatureCanvas");
+
+let ctx =
+canvas.getContext(
+    "2d",
+    {
+        willReadFrequently:true
+    }
+);
+
+
+const fileInput =
+document.getElementById("signatureFile");
+
+
+const preview =
+document.getElementById("signaturePreview");
+
+
+const previewWrap =
+document.getElementById(
+    "signaturePreviewWrap"
+);
+
+
+const tools =
+document.getElementById(
+    "signatureTools"
+);
+
+
+const editor =
+document.getElementById(
+    "signatureEditor"
+);
+
+
+/* =====================================================
+   UPLOAD SIGNATURE
+===================================================== */
+
+fileInput.addEventListener(
+    "change",
+    function(){
+
+        const file =
+        this.files[0];
+
+        if(!file){
+            return;
+        }
+
+
+        if(
+            !/^image\/(png|jpeg|jpg)$/i
+            .test(file.type)
+        ){
+
+            alert(
+                "केवल PNG या JPG image upload करें।"
+            );
+
+            this.value="";
+
+            return;
+        }
+
+
+        if(
+            file.size >
+            2 * 1024 * 1024
+        ){
+
+            alert(
+                "Signature image अधिकतम 2 MB की होनी चाहिए।"
+            );
+
+            this.value="";
+
+            return;
+        }
+
+
+        const reader =
+        new FileReader();
+
+
+        reader.onload =
+        function(event){
+
+            const img =
+            new Image();
+
+
+            img.onload =
+            function(){
+
+                originalImage =
+                img;
+
+
+                const maxWidth =
+                900;
+
+
+                const scale =
+                Math.min(
+                    1,
+                    maxWidth /
+                    img.naturalWidth
+                );
+
+
+                canvas.width =
+                Math.round(
+                    img.naturalWidth *
+                    scale
+                );
+
+
+                canvas.height =
+                Math.round(
+                    img.naturalHeight *
+                    scale
+                );
+
+
+                ctx.clearRect(
+                    0,
+                    0,
+                    canvas.width,
+                    canvas.height
+                );
+
+
+                ctx.drawImage(
+                    img,
+                    0,
+                    0,
+                    canvas.width,
+                    canvas.height
+                );
+
+
+                editor.style.display =
+                "block";
+
+
+                tools.style.display =
+                "flex";
+
+
+                updatePreview();
+
+            };
+
+
+            img.src =
+            event.target.result;
+
+        };
+
+
+        reader.readAsDataURL(file);
+
+    }
+);
+
+
+/* =====================================================
+   PREVIEW
+===================================================== */
+
+function updatePreview(){
+
+    preview.src =
+    canvas.toDataURL(
+        "image/png"
+    );
+
+
+    previewWrap.style.display =
+    "block";
+}
+
+
+/* =====================================================
+   BACKGROUND ERASER
+===================================================== */
+
+function removeBackground(){
+
+    if(!canvas.width){
+        return;
+    }
+
+
+    const imageData =
+    ctx.getImageData(
+        0,
+        0,
+        canvas.width,
+        canvas.height
+    );
+
+
+    const data =
+    imageData.data;
+
+
+    for(
+        let i=0;
+        i<data.length;
+        i+=4
+    ){
+
+        const r=data[i];
+        const g=data[i+1];
+        const b=data[i+2];
+
+
+        const brightness =
+        (r+g+b)/3;
+
+
+        const difference =
+        Math.max(r,g,b) -
+        Math.min(r,g,b);
+
+
+        /*
+         * White background
+         */
+
+        if(
+            brightness > 238 &&
+            difference < 25
+        ){
+
+            data[i+3]=0;
+
+        }
+
+
+        /*
+         * Light grey / anti-aliasing
+         */
+
+        else if(
+            brightness > 205 &&
+            difference < 35
+        ){
+
+            data[i+3]=Math.max(
+                0,
+                Math.min(
+                    255,
+                    (238-brightness)*8
+                )
+            );
+
+        }
+
+    }
+
+
+    ctx.putImageData(
+        imageData,
+        0,
+        0
+    );
+
+
+    updatePreview();
+}
+
+
+/* =====================================================
+   RESTORE ORIGINAL
+===================================================== */
+
+function restoreOriginal(){
+
+    if(!originalImage){
+        return;
+    }
+
+
+    canvas.width =
+    originalImage.naturalWidth;
+
+
+    canvas.height =
+    originalImage.naturalHeight;
+
+
+    ctx =
+    canvas.getContext(
+        "2d",
+        {
+            willReadFrequently:true
+        }
+    );
+
+
+    ctx.drawImage(
+        originalImage,
+        0,
+        0
+    );
+
+
+    updatePreview();
+}
+
+
+/* =====================================================
+   CROP
+===================================================== */
+
+function cropSignature(){
+
+    if(!canvas.width){
+        return;
+    }
+
+
+    const imageData =
+    ctx.getImageData(
+        0,
+        0,
+        canvas.width,
+        canvas.height
+    );
+
+
+    const pixels =
+    imageData.data;
+
+
+    let minX =
+    canvas.width;
+
+    let minY =
+    canvas.height;
+
+    let maxX =
+    -1;
+
+    let maxY =
+    -1;
+
+
+    for(
+        let y=0;
+        y<canvas.height;
+        y++
+    ){
+
+        for(
+            let x=0;
+            x<canvas.width;
+            x++
+        ){
+
+            const i =
+            (y*canvas.width+x)*4;
+
+
+            if(
+                pixels[i+3] > 20
+            ){
+
+                minX =
+                Math.min(
+                    minX,
+                    x
+                );
+
+
+                minY =
+                Math.min(
+                    minY,
+                    y
+                );
+
+
+                maxX =
+                Math.max(
+                    maxX,
+                    x
+                );
+
+
+                maxY =
+                Math.max(
+                    maxY,
+                    y
+                );
+
+            }
+
+        }
+
+    }
+
+
+    if(maxX < 0){
+
+        alert(
+            "Signature detect नहीं हुआ।"
+        );
+
+        return;
+    }
+
+
+    const padding =
+    12;
+
+
+    minX =
+    Math.max(
+        0,
+        minX-padding
+    );
+
+
+    minY =
+    Math.max(
+        0,
+        minY-padding
+    );
+
+
+    maxX =
+    Math.min(
+        canvas.width-1,
+        maxX+padding
+    );
+
+
+    maxY =
+    Math.min(
+        canvas.height-1,
+        maxY+padding
+    );
+
+
+    const cropped =
+    ctx.getImageData(
+        minX,
+        minY,
+        maxX-minX+1,
+        maxY-minY+1
+    );
+
+
+    canvas.width =
+    cropped.width;
+
+
+    canvas.height =
+    cropped.height;
+
+
+    ctx =
+    canvas.getContext(
+        "2d",
+        {
+            willReadFrequently:true
+        }
+    );
+
+
+    ctx.putImageData(
+        cropped,
+        0,
+        0
+    );
+
+
+    updatePreview();
+}
+
+
+/* =====================================================
+   REMOVE SIGNATURE
+===================================================== */
+
+function removeSignature(){
+
+    fileInput.value="";
+
+    preview.src="";
+
+    previewWrap.style.display="none";
+
+    tools.style.display="none";
+
+    editor.style.display="none";
+
+    originalImage=null;
+
+
+    ctx.clearRect(
+        0,
+        0,
+        canvas.width,
+        canvas.height
+    );
+}
+
+
+/* =====================================================
+   PRINT
+===================================================== */
+
+function printForm(){
+
+    const joined =
+    document.getElementById(
+        "joinedCheck"
+    ).checked;
+
+
+    if(
+        !channelOpened ||
+        !joined
+    ){
+
+        alert(
+            "कृपया पहले DEO Office WhatsApp Channel Join करें और confirmation checkbox को tick करें।"
+        );
+
+        return;
+    }
+
+
+    window.print();
+}
+
+
+/* =====================================================
+   CLEAR FORM
+===================================================== */
+
+function clearForm(){
+
+    if(
+        !confirm(
+            "क्या आप सभी भरी हुई जानकारी साफ करना चाहते हैं?"
+        )
+    ){
+
+        return;
+    }
+
+
+    document
+    .querySelectorAll(
+        'input[type="text"]'
+    )
+    .forEach(
+        function(input){
+
+            if(
+                input.value !== "बिहार"
+            ){
+
+                input.value="";
+
+            }
+
+        }
+    );
+
+
+    document
+    .querySelectorAll(
+        '[contenteditable="true"]'
+    )
+    .forEach(
+        function(element){
+
+            element.innerHTML="";
+
+        }
+    );
+
+
+    removeSignature();
+
+
+    document.getElementById(
+        "joinedCheck"
+    ).checked=false;
+
+
+    channelOpened=false;
+}
+
+</script>
+
+</body>
+</html>
