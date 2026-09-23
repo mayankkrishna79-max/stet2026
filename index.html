@@ -2,841 +2,755 @@
 <html lang="hi">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>STET Appearing Declaration - TRE 4.0</title>
 
 <style>
 *{box-sizing:border-box}
 
 body{
-    margin:0;
-    background:#e9e9e9;
-    color:#111;
-    font-family:"Noto Sans Devanagari","Mangal","Arial Unicode MS",Arial,sans-serif;
-    line-height:1.6;
+margin:0;
+background:#eee;
+color:#111;
+font-family:"Noto Sans Devanagari","Mangal","Arial Unicode MS",Arial,sans-serif;
+line-height:1.6
 }
 
 .toolbar{
-    width:210mm;
-    margin:15px auto;
-    display:flex;
-    justify-content:flex-end;
-    gap:8px;
+width:210mm;
+margin:12px auto;
+display:flex;
+justify-content:flex-end;
+gap:8px
 }
 
 button{
-    border:0;
-    border-radius:6px;
-    padding:9px 15px;
-    cursor:pointer;
-    font:inherit;
+border:0;
+border-radius:6px;
+padding:8px 13px;
+cursor:pointer;
+font:inherit
 }
 
 .print-btn{
-    background:#166534;
-    color:#fff;
+background:#166534;
+color:#fff
 }
 
 .clear-btn{
-    background:#1d4ed8;
-    color:#fff;
+background:#1d4ed8;
+color:#fff
 }
 
 .page{
-    width:210mm;
-    min-height:297mm;
-    margin:0 auto 20px;
-    padding:12mm 14mm;
-    background:#fff;
-    box-shadow:0 0 8px rgba(0,0,0,.18);
+width:210mm;
+min-height:297mm;
+margin:auto;
+padding:12mm 14mm;
+background:#fff;
+box-shadow:0 0 8px #bbb
 }
 
 .title{
-    text-align:center;
-    font-size:17px;
-    font-weight:700;
-    text-decoration:underline;
-    line-height:1.45;
-    margin-bottom:25px;
+text-align:center;
+font-size:17px;
+font-weight:700;
+text-decoration:underline;
+line-height:1.45;
+margin-bottom:24px
 }
 
 .heading{
-    text-align:center;
-    font-size:19px;
-    font-weight:700;
-    text-decoration:underline;
-    margin-bottom:18px;
+text-align:center;
+font-size:19px;
+font-weight:700;
+text-decoration:underline;
+margin-bottom:16px
 }
 
 .line{
-    margin:9px 0;
-    font-size:16px;
-    text-align:justify;
+margin:9px 0;
+font-size:16px;
+text-align:justify
 }
 
-input[type="text"]{
-    border:0;
-    border-bottom:1px dotted #222;
-    outline:0;
-    font:inherit;
-    background:transparent;
-    padding:0 4px;
+input[type=text]{
+border:0;
+border-bottom:1px dotted #222;
+outline:0;
+font:inherit;
+background:transparent;
+padding:0 4px
 }
 
-.full-input{width:220px}
-.medium-input{width:145px}
-.small-input{width:95px}
+.full{width:220px}
+.medium{width:145px}
+.small{width:95px}
 
 .note{
-    margin-top:15px;
-    font-size:15.5px;
-    text-align:justify;
-}
-
-.table-wrap{
-    margin-top:22px;
+margin-top:15px;
+font-size:15px;
+text-align:justify
 }
 
 table{
-    width:100%;
-    border-collapse:collapse;
-    table-layout:fixed;
-    font-size:15px;
+width:100%;
+border-collapse:collapse;
+table-layout:fixed;
+margin-top:22px;
+font-size:15px
 }
 
 th,td{
-    border:1px solid #222;
-    padding:7px;
-    text-align:center;
-    vertical-align:middle;
+border:1px solid #222;
+padding:7px;
+text-align:center;
+vertical-align:middle
 }
 
-th{
-    font-weight:700;
+td[contenteditable=true]{
+height:55px;
+outline:0
 }
 
-.lang{
-    width:21%;
-}
-
-.name-col{
-    width:26%;
-}
-
-td[contenteditable="true"]{
-    height:55px;
-    outline:0;
-}
-
-td[contenteditable="true"]:focus{
-    background:#f0fdf4;
-}
-
-/* =========================
-   SIGNATURE SECTION
-========================= */
+/* SIGNATURE */
 
 .signature{
-    width:48%;
-    margin-left:auto;
-    margin-top:42px;
-    font-size:16px;
+width:52%;
+margin-left:auto;
+margin-top:40px
 }
 
 .sig-row{
-    display:flex;
-    align-items:baseline;
-    margin:18px 0;
+display:flex;
+align-items:baseline;
+margin:17px 0
 }
 
 .sig-label{
-    width:80px;
-    font-weight:600;
+width:80px;
+font-weight:600
 }
 
 .sig-line{
-    flex:1;
-    border-bottom:1px dotted #222;
-    min-height:25px;
-    outline:0;
+flex:1;
+min-height:25px;
+border-bottom:1px dotted #222;
+outline:0
 }
-
-/* Upload box */
 
 .signature-upload{
-    margin-top:18px;
-    padding:13px;
-    border:1px dashed #777;
-    border-radius:8px;
-    background:#fafafa;
+margin-top:16px;
+padding:12px;
+border:1px dashed #777;
+border-radius:8px;
+background:#fafafa
 }
 
-.upload-title{
-    display:block;
-    font-weight:700;
-    margin-bottom:7px;
+.upload-label{
+display:block;
+font-weight:700;
+margin-bottom:6px
 }
 
-.signature-upload input[type="file"]{
-    display:block;
-    width:100%;
-    font:inherit;
-    padding:5px 0;
+#signatureFile{
+display:block;
+width:100%;
+padding:5px 0
 }
 
 .upload-help{
-    color:#666;
-    font-size:12px;
-    margin-top:4px;
+font-size:12px;
+color:#666
 }
 
-/* Preview */
-
 .signature-preview-wrap{
-    display:none;
-    margin-top:12px;
+display:none;
+margin-top:10px
 }
 
 .signature-preview{
-    max-width:220px;
-    max-height:85px;
-    padding:5px;
-    border:1px solid #ddd;
-    background-color:#fff;
-    background-image:
-        linear-gradient(45deg,#eee 25%,transparent 25%),
-        linear-gradient(-45deg,#eee 25%,transparent 25%),
-        linear-gradient(45deg,transparent 75%,#eee 75%),
-        linear-gradient(-45deg,transparent 75%,#eee 75%);
-    background-size:16px 16px;
-    background-position:
-        0 0,
-        0 8px,
-        8px -8px,
-        -8px 0;
+max-width:240px;
+max-height:90px;
+padding:4px;
+border:1px solid #ddd
 }
 
-/* Signature tools */
-
 .signature-tools{
-    display:none;
-    margin-top:10px;
-    flex-wrap:wrap;
-    gap:6px;
+display:none;
+flex-wrap:wrap;
+gap:6px;
+margin-top:9px
 }
 
 .signature-tools button{
-    padding:6px 10px;
-    font-size:13px;
-    color:#fff;
-    background:#166534;
+font-size:13px;
+color:#fff;
+background:#166534
 }
 
 .signature-tools .gray{
-    background:#555;
+background:#555
 }
 
 .signature-tools .orange{
-    background:#c2410c;
+background:#c2410c
 }
 
 .signature-tools .red{
-    background:#b91c1c;
+background:#b91c1c
 }
-
-/* Editor */
 
 .editor{
-    display:none;
-    margin-top:12px;
-    padding:10px;
-    border:1px solid #ddd;
-    border-radius:7px;
-    background:#fff;
+display:none;
+margin-top:10px;
+padding:9px;
+border:1px solid #ddd;
+border-radius:7px;
+background:#fff
 }
 
-.editor-title{
-    font-weight:700;
-    margin-bottom:8px;
-}
-
-.canvas-box{
-    overflow:auto;
-    text-align:center;
-    padding:8px;
-    border:1px solid #ccc;
-    background:
-        repeating-conic-gradient(
-            #eee 0% 25%,
-            #fff 0% 50%
-        ) 50% / 16px 16px;
+.canvas-wrap{
+overflow:auto;
+text-align:center;
+padding:8px;
+border:1px solid #ccc;
+background:#fafafa
 }
 
 #signatureCanvas{
-    max-width:100%;
-    height:auto;
-    touch-action:none;
+max-width:100%;
+height:auto;
+display:block;
+margin:auto
 }
 
-/* =========================
-   WHATSAPP
-========================= */
+/* WHATSAPP */
 
 .channel-box{
-    margin:25px auto 0;
-    max-width:650px;
-    padding:15px;
-    border:1px solid #25D366;
-    border-radius:10px;
-    background:#f0fff5;
-    text-align:center;
+margin:24px auto 0;
+max-width:650px;
+padding:14px;
+border:1px solid #25D366;
+border-radius:10px;
+background:#f0fff5;
+text-align:center
 }
 
 .channel-box h3{
-    margin:0 0 5px;
+margin:0
 }
 
 .channel-box p{
-    margin:5px 0 12px;
-    font-size:14px;
+margin:5px 0 10px;
+font-size:14px
 }
 
 .join-btn{
-    background:#25D366;
-    color:#fff;
-    font-weight:700;
+background:#25D366;
+color:#fff;
+font-weight:700
 }
 
 .join-check{
-    display:block;
-    margin-top:9px;
-    font-size:14px;
-}
-
-.join-check input{
-    width:auto;
-    accent-color:#25D366;
+display:block;
+margin-top:8px;
+font-size:14px
 }
 
 .instructions{
-    margin-top:25px;
-    border-top:1px solid #ddd;
-    padding-top:7px;
-    color:#555;
-    font-size:12px;
+margin-top:20px;
+border-top:1px solid #ddd;
+padding-top:7px;
+font-size:12px;
+color:#666
 }
 
-/* =========================
-   MOBILE
-========================= */
+/* MOBILE */
 
 @media(max-width:700px){
 
-    body{
-        background:#fff;
-    }
-
-    .toolbar,
-    .page{
-        width:100%;
-    }
-
-    .page{
-        padding:20px;
-        box-shadow:none;
-    }
-
-    .toolbar{
-        padding:10px;
-        margin:0;
-    }
-
-    .full-input,
-    .medium-input,
-    .small-input{
-        max-width:100%;
-    }
-
-    .signature{
-        width:100%;
-    }
+body{
+background:#fff
 }
 
-/* =========================
-   PRINT
-========================= */
+.toolbar,
+.page{
+width:100%
+}
+
+.toolbar{
+padding:8px;
+margin:0
+}
+
+.page{
+padding:18px;
+box-shadow:none
+}
+
+.full,
+.medium,
+.small{
+max-width:100%
+}
+
+.signature{
+width:100%
+}
+
+}
+
+/* PRINT */
 
 @media print{
 
-    @page{
-        size:A4 portrait;
-        margin:12mm;
-    }
+@page{
+size:A4 portrait;
+margin:12mm
+}
 
-    body{
-        background:#fff;
-    }
+body{
+background:#fff
+}
 
-    .toolbar,
-    .channel-box,
-    .instructions,
-    .signature-upload{
-        display:none !important;
-    }
+.toolbar,
+.channel-box,
+.instructions,
+.signature-upload{
+display:none!important
+}
 
-    .page{
-        width:210mm;
-        min-height:297mm;
-        margin:0;
-        padding:0;
-        box-shadow:none;
-    }
+.page{
+width:210mm;
+min-height:297mm;
+margin:0;
+padding:0;
+box-shadow:none
+}
 
-    .signature-preview-wrap{
-        display:block !important;
-    }
+.signature-preview-wrap{
+display:block!important
+}
 
-    .signature-preview{
-        border:0 !important;
-        padding:0 !important;
-        max-width:190px;
-        max-height:75px;
-        background:none !important;
-    }
+.signature-preview{
+border:0!important;
+padding:0!important;
+max-width:190px;
+max-height:75px
+}
+
 }
 </style>
 </head>
 
 <body>
 
-<!-- =========================
-     TOOLBAR
-========================= -->
-
 <div class="toolbar">
 
-    <button
-        class="clear-btn"
-        onclick="clearForm()">
-        फॉर्म साफ करें
-    </button>
+<button
+class="clear-btn"
+onclick="clearForm()">
+फॉर्म साफ करें
+</button>
 
-    <button
-        class="print-btn"
-        onclick="printForm()">
-        🖨️ Print / PDF
-    </button>
+<button
+class="print-btn"
+onclick="printForm()">
+🖨️ Print / PDF
+</button>
 
 </div>
 
 
-<!-- =========================
-     MAIN PAGE
-========================= -->
-
 <div class="page">
 
-    <div class="title">
-        विद्यालय अध्यापक (TRE-4.0) भर्ती परीक्षा हेतु माध्यमिक शिक्षक पात्रता परीक्षा<br>
-        (STET), 2026 में सम्मिलित होने वाले अभ्यर्थियों के लिए स्व-घोषणा
-    </div>
+<div class="title">
 
-    <div class="heading">
-        घोषणा
-    </div>
+विद्यालय अध्यापक (TRE-4.0) भर्ती परीक्षा हेतु माध्यमिक शिक्षक पात्रता परीक्षा<br>
 
+(STET), 2026 में सम्मिलित होने वाले अभ्यर्थियों के लिए स्व-घोषणा
 
-    <div class="line">
+</div>
 
-        प्रमाणित किया जाता है कि मैं
-        श्री/सुश्री/श्रीमती
 
-        <input
-            class="full-input"
-            type="text"
-            placeholder="अभ्यर्थी का नाम">
+<div class="heading">
+घोषणा
+</div>
 
-        पिता
 
-        <input
-            class="medium-input"
-            type="text"
-            placeholder="पिता का नाम">
+<div class="line">
 
-    </div>
+प्रमाणित किया जाता है कि मैं श्री/सुश्री/श्रीमती
 
+<input
+class="full"
+type="text"
+placeholder="अभ्यर्थी का नाम">
 
-    <div class="line">
+पिता
 
-        माता
+<input
+class="medium"
+type="text"
+placeholder="पिता का नाम">
 
-        <input
-            class="medium-input"
-            type="text"
-            placeholder="माता का नाम">
+</div>
 
-        जन्म तिथि
 
-        <input
-            class="small-input"
-            type="text"
-            placeholder="DD/MM/YYYY">
+<div class="line">
 
-        आधार संख्या
+माता
 
-        <input
-            class="medium-input"
-            type="text"
-            maxlength="12"
-            inputmode="numeric"
-            placeholder="आधार संख्या">
+<input
+class="medium"
+type="text"
+placeholder="माता का नाम">
 
-    </div>
+जन्म तिथि
 
+<input
+class="small"
+type="text"
+placeholder="DD/MM/YYYY">
 
-    <div class="line">
+आधार संख्या
 
-        ग्राम/शहर
+<input
+class="medium"
+type="text"
+maxlength="12"
+inputmode="numeric"
+placeholder="आधार संख्या">
 
-        <input
-            class="medium-input"
-            type="text"
-            placeholder="ग्राम/शहर">
+</div>
 
-        डाकघर
 
-        <input
-            class="medium-input"
-            type="text"
-            placeholder="डाकघर">
+<div class="line">
 
-        थाना
+ग्राम/शहर
 
-        <input
-            class="medium-input"
-            type="text"
-            placeholder="थाना">
+<input
+class="medium"
+type="text"
+placeholder="ग्राम/शहर">
 
-    </div>
+डाकघर
 
+<input
+class="medium"
+type="text"
+placeholder="डाकघर">
 
-    <div class="line">
+थाना
 
-        जिला
+<input
+class="medium"
+type="text"
+placeholder="थाना">
 
-        <input
-            class="medium-input"
-            type="text"
-            placeholder="जिला">
+</div>
 
-        राज्य
 
-        <input
-            class="medium-input"
-            type="text"
-            value="बिहार">
+<div class="line">
 
-        का निवासी हूँ। मैं माध्यमिक शिक्षक पात्रता परीक्षा
-        (STET), 2026 का अभ्यर्थी हूँ एवं मेरा आवेदन संख्या
+जिला
 
-        <input
-            class="medium-input"
-            type="text"
-            placeholder="आवेदन संख्या">
+<input
+class="medium"
+type="text"
+placeholder="जिला">
 
-        है। उक्त आवेदन की छायाप्रति संलग्न है।
+राज्य
 
-    </div>
+<input
+class="medium"
+type="text"
+value="बिहार">
 
+का निवासी हूँ। मैं माध्यमिक शिक्षक पात्रता परीक्षा (STET), 2026 का अभ्यर्थी हूँ एवं मेरा आवेदन संख्या
 
-    <div class="note">
+<input
+class="medium"
+type="text"
+placeholder="आवेदन संख्या">
 
-        <strong>नोट:-</strong>
+है। उक्त आवेदन की छायाप्रति संलग्न है।
 
-        मैं घोषणा करता/करती हूँ कि उक्त जानकारी सत्य एवं वैध है।
-        यदि कोई भी जानकारी असत्य पाई जाती है, तो मेरी उम्मीदवारी
-        रद्द करने का अधिकार आयोग के पास होगा, जिसके लिए मैं स्वयं
-        जिम्मेवार रहूँगा/रहूँगी।
+</div>
 
-    </div>
 
+<div class="note">
 
-    <!-- =========================
-         NAME TABLE
-    ========================= -->
+<strong>नोट:-</strong>
 
-    <div class="table-wrap">
+मैं घोषणा करता/करती हूँ कि उक्त जानकारी सत्य एवं वैध है।
+यदि कोई भी जानकारी असत्य पाई जाती है,
+तो मेरी उम्मीदवारी रद्द करने का अधिकार आयोग के पास होगा,
+जिसके लिए मैं स्वयं जिम्मेवार रहूँगा/रहूँगी।
 
-        <table>
+</div>
 
-            <tr>
 
-                <th class="lang"></th>
+<table>
 
-                <th class="name-col">
-                    अभ्यर्थी का नाम
-                </th>
+<tr>
 
-                <th class="name-col">
-                    पिता का नाम
-                </th>
+<th style="width:21%"></th>
 
-                <th class="name-col">
-                    माता का नाम
-                </th>
+<th>
+अभ्यर्थी का नाम
+</th>
 
-            </tr>
+<th>
+पिता का नाम
+</th>
 
+<th>
+माता का नाम
+</th>
 
-            <tr>
+</tr>
 
-                <td>
-                    हिन्दी में
-                </td>
 
-                <td contenteditable="true"></td>
+<tr>
 
-                <td contenteditable="true"></td>
+<td>
+हिन्दी में
+</td>
 
-                <td contenteditable="true"></td>
+<td contenteditable="true"></td>
 
-            </tr>
+<td contenteditable="true"></td>
 
+<td contenteditable="true"></td>
 
-            <tr>
+</tr>
 
-                <td>
-                    अंग्रेजी में<br>
-                    <strong>(Capital Letter)</strong>
-                </td>
 
-                <td contenteditable="true"></td>
+<tr>
 
-                <td contenteditable="true"></td>
+<td>
+अंग्रेजी में<br>
+<strong>(Capital Letter)</strong>
+</td>
 
-                <td contenteditable="true"></td>
+<td contenteditable="true"></td>
 
-            </tr>
+<td contenteditable="true"></td>
 
-        </table>
+<td contenteditable="true"></td>
 
-    </div>
+</tr>
 
+</table>
 
-    <!-- =========================
-         SIGNATURE
-    ========================= -->
 
-    <div class="signature">
+<!-- SIGNATURE -->
 
-        <div class="sig-row">
+<div class="signature">
 
-            <div class="sig-label">
-                नाम:-
-            </div>
 
-            <div
-                class="sig-line"
-                contenteditable="true">
-            </div>
+<div class="sig-row">
 
-        </div>
+<div class="sig-label">
+नाम:-
+</div>
 
+<div
+class="sig-line"
+contenteditable="true">
+</div>
 
-        <div class="sig-row">
+</div>
 
-            <div class="sig-label">
-                हस्ताक्षर:-
-            </div>
 
-            <div
-                class="sig-line"
-                contenteditable="true">
-            </div>
+<div class="sig-row">
 
-        </div>
+<div class="sig-label">
+हस्ताक्षर:-
+</div>
 
+<div
+class="sig-line"
+contenteditable="true">
+</div>
 
-        <!-- SIGNATURE UPLOAD -->
+</div>
 
-        <div class="signature-upload">
 
-            <label
-                class="upload-title"
-                for="signatureFile">
+<div class="signature-upload">
 
-                ✍️ अपना हस्ताक्षर Upload करें
+<label
+class="upload-label"
+for="signatureFile">
 
-            </label>
+✍️ अपना हस्ताक्षर Upload करें
 
+</label>
 
-            <input
-                type="file"
-                id="signatureFile"
-                accept="image/png,image/jpeg,image/jpg">
 
+<input
+id="signatureFile"
+type="file"
+accept="image/png,image/jpeg,image/jpg">
 
-            <div class="upload-help">
 
-                PNG/JPG • अधिकतम 2 MB •
-                साफ हस्ताक्षर वाली फोटो चुनें
+<div class="upload-help">
 
-            </div>
+PNG/JPG • अधिकतम 2 MB •
+Mobile में Gallery/Files से signature चुनें
 
+</div>
 
-            <!-- SIGNATURE PREVIEW -->
 
-            <div
-                class="signature-preview-wrap"
-                id="signaturePreviewWrap">
+<div
+class="signature-preview-wrap"
+id="previewWrap">
 
-                <strong>
-                    Signature Preview:
-                </strong>
+<strong>
+Signature Preview:
+</strong>
 
-                <br>
+<br>
 
-                <img
-                    id="signaturePreview"
-                    class="signature-preview"
-                    alt="Signature Preview">
+<img
+id="signaturePreview"
+class="signature-preview"
+alt="Signature Preview">
 
-            </div>
+</div>
 
 
-            <!-- SIGNATURE TOOLS -->
+<div
+class="signature-tools"
+id="signatureTools">
 
-            <div
-                class="signature-tools"
-                id="signatureTools">
 
+<button
+type="button"
+onclick="removeBackground()">
 
-                <button
-                    type="button"
-                    onclick="removeBackground()">
+🪄 Background Eraser
 
-                    🪄 Background Eraser
+</button>
 
-                </button>
 
+<button
+type="button"
+class="gray"
+onclick="restoreOriginal()">
 
-                <button
-                    type="button"
-                    class="gray"
-                    onclick="restoreOriginal()">
+↩️ Original
 
-                    ↩️ Original
+</button>
 
-                </button>
 
+<button
+type="button"
+class="orange"
+onclick="cropSignature()">
 
-                <button
-                    type="button"
-                    class="orange"
-                    onclick="cropSignature()">
+✂️ Crop
 
-                    ✂️ Crop
+</button>
 
-                </button>
 
+<button
+type="button"
+class="red"
+onclick="removeSignature()">
 
-                <button
-                    type="button"
-                    class="red"
-                    onclick="removeSignature()">
+🗑️ Remove
 
-                    🗑️ Remove
+</button>
 
-                </button>
 
-            </div>
+</div>
 
 
-            <!-- EDITOR -->
+<div
+class="editor"
+id="editor">
 
-            <div
-                class="editor"
-                id="signatureEditor">
+<div
+style="font-weight:700;margin-bottom:6px">
 
-                <div class="editor-title">
-                    Signature Editor
-                </div>
+Signature Editor
 
+</div>
 
-                <div class="canvas-box">
 
-                    <canvas
-                        id="signatureCanvas">
-                    </canvas>
+<div class="canvas-wrap">
 
-                </div>
+<canvas
+id="signatureCanvas">
+</canvas>
 
-            </div>
+</div>
 
-        </div>
+</div>
 
-    </div>
+</div>
 
+</div>
 
-    <!-- =========================
-         WHATSAPP JOIN
-    ========================= -->
 
-    <div
-        class="channel-box"
-        id="channelBox">
+<!-- WHATSAPP -->
 
-        <h3>
-            📢 DEO Office WhatsApp Channel
-        </h3>
+<div class="channel-box">
 
+<h3>
+📢 DEO Office WhatsApp Channel
+</h3>
 
-        <p>
 
-            शिक्षा विभाग एवं शिक्षक संबंधी महत्वपूर्ण अपडेट पाने के लिए
-            हमारे WhatsApp Channel से जुड़ें।
+<p>
 
-        </p>
+शिक्षा विभाग एवं शिक्षक संबंधी महत्वपूर्ण अपडेट पाने के लिए
+हमारे WhatsApp Channel से जुड़ें।
 
+</p>
 
-        <button
-            type="button"
-            class="join-btn"
-            onclick="openChannel()">
 
-            📲 WhatsApp Channel Join करें
+<button
+type="button"
+class="join-btn"
+onclick="openChannel()">
 
-        </button>
+📲 WhatsApp Channel Join करें
 
+</button>
 
-        <label class="join-check">
 
-            <input
-                type="checkbox"
-                id="joinedCheck">
+<label class="join-check">
 
-            मैंने DEO Office WhatsApp Channel Join कर लिया है।
+<input
+type="checkbox"
+id="joinedCheck">
 
-        </label>
+मैंने DEO Office WhatsApp Channel Join कर लिया है।
 
-    </div>
+</label>
 
+</div>
 
-    <div class="instructions">
 
-        घोषणा-पत्र को A4 आकार में
-        Print / Save as PDF किया जा सकता है।
+<div class="instructions">
 
-    </div>
+घोषणा-पत्र को A4 आकार में
+Print / Save as PDF किया जा सकता है।
+
+</div>
 
 </div>
 
 
 <script>
 
-/* =====================================================
+/* ==========================================
    WHATSAPP CHANNEL
-===================================================== */
+========================================== */
 
 const CHANNEL_URL =
 "https://whatsapp.com/channel/0029VaIhMoY35fM4YK5xrz3P";
@@ -844,626 +758,790 @@ const CHANNEL_URL =
 let channelOpened = false;
 
 
+/* ==========================================
+   OPEN CHANNEL
+========================================== */
+
 function openChannel(){
 
-    channelOpened = true;
+channelOpened = true;
 
-    window.open(
-        CHANNEL_URL,
-        "_blank",
-        "noopener,noreferrer"
-    );
+window.open(
+CHANNEL_URL,
+"_blank",
+"noopener,noreferrer"
+);
 
 }
 
 
-/* =====================================================
-   SIGNATURE VARIABLES
-===================================================== */
+/* ==========================================
+   SIGNATURE
+========================================== */
 
 let originalImage = null;
 
-const canvas =
-document.getElementById("signatureCanvas");
 
-let ctx =
-canvas.getContext(
-    "2d",
-    {
-        willReadFrequently:true
-    }
+const fileInput =
+document.getElementById(
+"signatureFile"
 );
 
 
-const fileInput =
-document.getElementById("signatureFile");
-
-
 const preview =
-document.getElementById("signaturePreview");
+document.getElementById(
+"signaturePreview"
+);
 
 
 const previewWrap =
 document.getElementById(
-    "signaturePreviewWrap"
+"previewWrap"
 );
 
 
 const tools =
 document.getElementById(
-    "signatureTools"
+"signatureTools"
 );
 
 
 const editor =
 document.getElementById(
-    "signatureEditor"
+"editor"
 );
 
 
-/* =====================================================
-   UPLOAD SIGNATURE
-===================================================== */
+const canvas =
+document.getElementById(
+"signatureCanvas"
+);
+
+
+let ctx =
+canvas.getContext(
+"2d",
+{
+willReadFrequently:true
+}
+);
+
+
+/* ==========================================
+   UPLOAD
+========================================== */
 
 fileInput.addEventListener(
-    "change",
-    function(){
+"change",
+function(){
 
-        const file =
-        this.files[0];
+const file =
+this.files &&
+this.files[0];
 
-        if(!file){
-            return;
-        }
-
-
-        if(
-            !/^image\/(png|jpeg|jpg)$/i
-            .test(file.type)
-        ){
-
-            alert(
-                "केवल PNG या JPG image upload करें।"
-            );
-
-            this.value="";
-
-            return;
-        }
+if(!file){
+return;
+}
 
 
-        if(
-            file.size >
-            2 * 1024 * 1024
-        ){
+/* TYPE */
 
-            alert(
-                "Signature image अधिकतम 2 MB की होनी चाहिए।"
-            );
+if(
+![
+"image/png",
+"image/jpeg",
+"image/jpg"
+].includes(file.type)
+){
 
-            this.value="";
+alert(
+"केवल PNG या JPG हस्ताक्षर upload करें।"
+);
 
-            return;
-        }
+this.value = "";
 
+return;
 
-        const reader =
-        new FileReader();
-
-
-        reader.onload =
-        function(event){
-
-            const img =
-            new Image();
+}
 
 
-            img.onload =
-            function(){
+/* SIZE */
 
-                originalImage =
-                img;
+if(
+file.size >
+2 * 1024 * 1024
+){
 
+alert(
+"Signature image 2 MB से अधिक नहीं होनी चाहिए।"
+);
 
-                const maxWidth =
-                900;
+this.value = "";
 
+return;
 
-                const scale =
-                Math.min(
-                    1,
-                    maxWidth /
-                    img.naturalWidth
-                );
-
-
-                canvas.width =
-                Math.round(
-                    img.naturalWidth *
-                    scale
-                );
+}
 
 
-                canvas.height =
-                Math.round(
-                    img.naturalHeight *
-                    scale
-                );
+const reader =
+new FileReader();
 
 
-                ctx.clearRect(
-                    0,
-                    0,
-                    canvas.width,
-                    canvas.height
-                );
+reader.onload =
+function(e){
+
+const img =
+new Image();
 
 
-                ctx.drawImage(
-                    img,
-                    0,
-                    0,
-                    canvas.width,
-                    canvas.height
-                );
+img.onload =
+function(){
+
+originalImage = img;
 
 
-                editor.style.display =
-                "block";
+/* Resize large image */
 
+const maxWidth = 1000;
 
-                tools.style.display =
-                "flex";
-
-
-                updatePreview();
-
-            };
-
-
-            img.src =
-            event.target.result;
-
-        };
-
-
-        reader.readAsDataURL(file);
-
-    }
+const scale =
+Math.min(
+1,
+maxWidth /
+img.naturalWidth
 );
 
 
-/* =====================================================
+canvas.width =
+Math.max(
+1,
+Math.round(
+img.naturalWidth *
+scale
+)
+);
+
+
+canvas.height =
+Math.max(
+1,
+Math.round(
+img.naturalHeight *
+scale
+)
+);
+
+
+ctx =
+canvas.getContext(
+"2d",
+{
+willReadFrequently:true
+}
+);
+
+
+ctx.clearRect(
+0,
+0,
+canvas.width,
+canvas.height
+);
+
+
+ctx.drawImage(
+img,
+0,
+0,
+canvas.width,
+canvas.height
+);
+
+
+editor.style.display =
+"block";
+
+
+tools.style.display =
+"flex";
+
+
+updatePreview();
+
+};
+
+
+img.onerror =
+function(){
+
+alert(
+"Signature image पढ़ी नहीं जा सकी। कृपया दूसरी JPG/PNG file चुनें।"
+);
+
+};
+
+
+img.src =
+e.target.result;
+
+};
+
+
+reader.onerror =
+function(){
+
+alert(
+"File पढ़ने में समस्या हुई। कृपया दोबारा प्रयास करें।"
+);
+
+};
+
+
+reader.readAsDataURL(file);
+
+}
+);
+
+
+/* ==========================================
    PREVIEW
-===================================================== */
+========================================== */
 
 function updatePreview(){
 
-    preview.src =
-    canvas.toDataURL(
-        "image/png"
-    );
+preview.src =
+canvas.toDataURL(
+"image/png"
+);
 
+previewWrap.style.display =
+"block";
 
-    previewWrap.style.display =
-    "block";
 }
 
 
-/* =====================================================
+/* ==========================================
    BACKGROUND ERASER
-===================================================== */
+========================================== */
 
 function removeBackground(){
 
-    if(!canvas.width){
-        return;
-    }
+if(
+!canvas.width ||
+!canvas.height
+){
 
+return;
 
-    const imageData =
-    ctx.getImageData(
-        0,
-        0,
-        canvas.width,
-        canvas.height
-    );
-
-
-    const data =
-    imageData.data;
-
-
-    for(
-        let i=0;
-        i<data.length;
-        i+=4
-    ){
-
-        const r=data[i];
-        const g=data[i+1];
-        const b=data[i+2];
-
-
-        const brightness =
-        (r+g+b)/3;
-
-
-        const difference =
-        Math.max(r,g,b) -
-        Math.min(r,g,b);
-
-
-        /*
-         * White background
-         */
-
-        if(
-            brightness > 238 &&
-            difference < 25
-        ){
-
-            data[i+3]=0;
-
-        }
-
-
-        /*
-         * Light grey / anti-aliasing
-         */
-
-        else if(
-            brightness > 205 &&
-            difference < 35
-        ){
-
-            data[i+3]=Math.max(
-                0,
-                Math.min(
-                    255,
-                    (238-brightness)*8
-                )
-            );
-
-        }
-
-    }
-
-
-    ctx.putImageData(
-        imageData,
-        0,
-        0
-    );
-
-
-    updatePreview();
 }
 
 
-/* =====================================================
-   RESTORE ORIGINAL
-===================================================== */
+const imageData =
+ctx.getImageData(
+0,
+0,
+canvas.width,
+canvas.height
+);
+
+
+const d =
+imageData.data;
+
+
+for(
+let i=0;
+i<d.length;
+i+=4
+){
+
+const r=d[i];
+
+const g=d[i+1];
+
+const b=d[i+2];
+
+
+const brightness =
+(r+g+b)/3;
+
+
+const spread =
+Math.max(r,g,b) -
+Math.min(r,g,b);
+
+
+/* White */
+
+if(
+brightness >= 245 &&
+spread <= 20
+){
+
+d[i+3] = 0;
+
+}
+
+
+/* Light background */
+
+else if(
+brightness >= 215 &&
+spread <= 30
+){
+
+d[i+3] =
+Math.max(
+0,
+Math.min(
+255,
+(245-brightness)*8
+)
+);
+
+}
+
+}
+
+
+ctx.putImageData(
+imageData,
+0,
+0
+);
+
+
+updatePreview();
+
+}
+
+
+/* ==========================================
+   RESTORE
+========================================== */
 
 function restoreOriginal(){
 
-    if(!originalImage){
-        return;
-    }
+if(!originalImage){
 
+return;
 
-    canvas.width =
-    originalImage.naturalWidth;
-
-
-    canvas.height =
-    originalImage.naturalHeight;
-
-
-    ctx =
-    canvas.getContext(
-        "2d",
-        {
-            willReadFrequently:true
-        }
-    );
-
-
-    ctx.drawImage(
-        originalImage,
-        0,
-        0
-    );
-
-
-    updatePreview();
 }
 
 
-/* =====================================================
+const maxWidth =
+1000;
+
+
+const scale =
+Math.min(
+1,
+maxWidth /
+originalImage.naturalWidth
+);
+
+
+canvas.width =
+Math.max(
+1,
+Math.round(
+originalImage.naturalWidth *
+scale
+)
+);
+
+
+canvas.height =
+Math.max(
+1,
+Math.round(
+originalImage.naturalHeight *
+scale
+)
+);
+
+
+ctx =
+canvas.getContext(
+"2d",
+{
+willReadFrequently:true
+}
+);
+
+
+ctx.clearRect(
+0,
+0,
+canvas.width,
+canvas.height
+);
+
+
+ctx.drawImage(
+originalImage,
+0,
+0,
+canvas.width,
+canvas.height
+);
+
+
+updatePreview();
+
+}
+
+
+/* ==========================================
    CROP
-===================================================== */
+========================================== */
 
 function cropSignature(){
 
-    if(!canvas.width){
-        return;
-    }
+if(
+!canvas.width ||
+!canvas.height
+){
 
+alert(
+"पहले signature upload करें।"
+);
 
-    const imageData =
-    ctx.getImageData(
-        0,
-        0,
-        canvas.width,
-        canvas.height
-    );
+return;
 
-
-    const pixels =
-    imageData.data;
-
-
-    let minX =
-    canvas.width;
-
-    let minY =
-    canvas.height;
-
-    let maxX =
-    -1;
-
-    let maxY =
-    -1;
-
-
-    for(
-        let y=0;
-        y<canvas.height;
-        y++
-    ){
-
-        for(
-            let x=0;
-            x<canvas.width;
-            x++
-        ){
-
-            const i =
-            (y*canvas.width+x)*4;
-
-
-            if(
-                pixels[i+3] > 20
-            ){
-
-                minX =
-                Math.min(
-                    minX,
-                    x
-                );
-
-
-                minY =
-                Math.min(
-                    minY,
-                    y
-                );
-
-
-                maxX =
-                Math.max(
-                    maxX,
-                    x
-                );
-
-
-                maxY =
-                Math.max(
-                    maxY,
-                    y
-                );
-
-            }
-
-        }
-
-    }
-
-
-    if(maxX < 0){
-
-        alert(
-            "Signature detect नहीं हुआ।"
-        );
-
-        return;
-    }
-
-
-    const padding =
-    12;
-
-
-    minX =
-    Math.max(
-        0,
-        minX-padding
-    );
-
-
-    minY =
-    Math.max(
-        0,
-        minY-padding
-    );
-
-
-    maxX =
-    Math.min(
-        canvas.width-1,
-        maxX+padding
-    );
-
-
-    maxY =
-    Math.min(
-        canvas.height-1,
-        maxY+padding
-    );
-
-
-    const cropped =
-    ctx.getImageData(
-        minX,
-        minY,
-        maxX-minX+1,
-        maxY-minY+1
-    );
-
-
-    canvas.width =
-    cropped.width;
-
-
-    canvas.height =
-    cropped.height;
-
-
-    ctx =
-    canvas.getContext(
-        "2d",
-        {
-            willReadFrequently:true
-        }
-    );
-
-
-    ctx.putImageData(
-        cropped,
-        0,
-        0
-    );
-
-
-    updatePreview();
 }
 
 
-/* =====================================================
-   REMOVE SIGNATURE
-===================================================== */
+const w =
+canvas.width;
+
+
+const h =
+canvas.height;
+
+
+const imageData =
+ctx.getImageData(
+0,
+0,
+w,
+h
+);
+
+
+const d =
+imageData.data;
+
+
+let minX=w;
+
+let minY=h;
+
+let maxX=-1;
+
+let maxY=-1;
+
+
+/* Detect signature */
+
+for(
+let y=0;
+y<h;
+y++
+){
+
+for(
+let x=0;
+x<w;
+x++
+){
+
+const i =
+(y*w+x)*4;
+
+
+const r =
+d[i];
+
+const g =
+d[i+1];
+
+const b =
+d[i+2];
+
+const a =
+d[i+3];
+
+
+if(a < 15){
+
+continue;
+
+}
+
+
+const brightness =
+(r+g+b)/3;
+
+
+const spread =
+Math.max(r,g,b) -
+Math.min(r,g,b);
+
+
+/* Dark/non-white ink */
+
+if(
+brightness < 225 ||
+spread > 35
+){
+
+if(x < minX)
+minX=x;
+
+if(y < minY)
+minY=y;
+
+if(x > maxX)
+maxX=x;
+
+if(y > maxY)
+maxY=y;
+
+}
+
+}
+
+}
+
+
+if(maxX < 0){
+
+alert(
+"Signature detect नहीं हुआ। साफ signature वाली image चुनें।"
+);
+
+return;
+
+}
+
+
+/* Padding */
+
+const padding =
+Math.max(
+8,
+Math.round(
+Math.min(w,h)*0.02
+)
+);
+
+
+minX =
+Math.max(
+0,
+minX-padding
+);
+
+
+minY =
+Math.max(
+0,
+minY-padding
+);
+
+
+maxX =
+Math.min(
+w-1,
+maxX+padding
+);
+
+
+maxY =
+Math.min(
+h-1,
+maxY+padding
+);
+
+
+const cropped =
+ctx.getImageData(
+minX,
+minY,
+maxX-minX+1,
+maxY-minY+1
+);
+
+
+canvas.width =
+cropped.width;
+
+
+canvas.height =
+cropped.height;
+
+
+ctx =
+canvas.getContext(
+"2d",
+{
+willReadFrequently:true
+}
+);
+
+
+ctx.clearRect(
+0,
+0,
+canvas.width,
+canvas.height
+);
+
+
+ctx.putImageData(
+cropped,
+0,
+0
+);
+
+
+updatePreview();
+
+}
+
+
+/* ==========================================
+   REMOVE
+========================================== */
 
 function removeSignature(){
 
-    fileInput.value="";
+fileInput.value = "";
 
-    preview.src="";
+preview.removeAttribute(
+"src"
+);
 
-    previewWrap.style.display="none";
+previewWrap.style.display =
+"none";
 
-    tools.style.display="none";
+tools.style.display =
+"none";
 
-    editor.style.display="none";
+editor.style.display =
+"none";
 
-    originalImage=null;
+originalImage = null;
 
 
-    ctx.clearRect(
-        0,
-        0,
-        canvas.width,
-        canvas.height
-    );
+if(
+canvas.width &&
+canvas.height
+){
+
+ctx.clearRect(
+0,
+0,
+canvas.width,
+canvas.height
+);
+
+}
+
 }
 
 
-/* =====================================================
+/* ==========================================
    PRINT
-===================================================== */
+========================================== */
 
 function printForm(){
 
-    const joined =
-    document.getElementById(
-        "joinedCheck"
-    ).checked;
+const joined =
+document.getElementById(
+"joinedCheck"
+).checked;
 
 
-    if(
-        !channelOpened ||
-        !joined
-    ){
+if(
+!channelOpened ||
+!joined
+){
 
-        alert(
-            "कृपया पहले DEO Office WhatsApp Channel Join करें और confirmation checkbox को tick करें।"
-        );
+alert(
+"कृपया पहले DEO Office WhatsApp Channel Join करें और confirmation checkbox को tick करें।"
+);
 
-        return;
-    }
+return;
 
-
-    window.print();
 }
 
 
-/* =====================================================
-   CLEAR FORM
-===================================================== */
+window.print();
+
+}
+
+
+/* ==========================================
+   CLEAR
+========================================== */
 
 function clearForm(){
 
-    if(
-        !confirm(
-            "क्या आप सभी भरी हुई जानकारी साफ करना चाहते हैं?"
-        )
-    ){
+if(
+!confirm(
+"क्या आप सभी भरी हुई जानकारी साफ करना चाहते हैं?"
+)
+){
 
-        return;
-    }
+return;
 
-
-    document
-    .querySelectorAll(
-        'input[type="text"]'
-    )
-    .forEach(
-        function(input){
-
-            if(
-                input.value !== "बिहार"
-            ){
-
-                input.value="";
-
-            }
-
-        }
-    );
+}
 
 
-    document
-    .querySelectorAll(
-        '[contenteditable="true"]'
-    )
-    .forEach(
-        function(element){
+document
+.querySelectorAll(
+'input[type="text"]'
+)
+.forEach(
+function(el){
 
-            element.innerHTML="";
+if(
+el.value !== "बिहार"
+){
 
-        }
-    );
+el.value="";
 
+}
 
-    removeSignature();
-
-
-    document.getElementById(
-        "joinedCheck"
-    ).checked=false;
+}
+);
 
 
-    channelOpened=false;
+document
+.querySelectorAll(
+'[contenteditable="true"]'
+)
+.forEach(
+function(el){
+
+el.innerHTML="";
+
+}
+);
+
+
+removeSignature();
+
+
+document.getElementById(
+"joinedCheck"
+).checked=false;
+
+
+channelOpened=false;
+
 }
 
 </script>
