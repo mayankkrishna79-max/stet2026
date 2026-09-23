@@ -2,349 +2,401 @@
 <html lang="hi">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>STET Appearing Declaration - TRE 4.0</title>
 
 <style>
-*{box-sizing:border-box}
 
-body{
-margin:0;
-background:#eee;
-color:#111;
-font-family:"Noto Sans Devanagari","Mangal","Arial Unicode MS",Arial,sans-serif;
-line-height:1.6
+*{
+    box-sizing:border-box;
 }
 
+body{
+    margin:0;
+    background:#eeeeee;
+    color:#111;
+    font-family:"Noto Sans Devanagari","Mangal","Arial Unicode MS",Arial,sans-serif;
+    line-height:1.55;
+}
+
+/* ================= TOOLBAR ================= */
+
 .toolbar{
-width:210mm;
-margin:12px auto;
-display:flex;
-justify-content:flex-end;
-gap:8px
+    width:210mm;
+    margin:12px auto;
+    display:flex;
+    justify-content:flex-end;
+    gap:8px;
 }
 
 button{
-border:0;
-border-radius:6px;
-padding:8px 13px;
-cursor:pointer;
-font:inherit
+    border:0;
+    border-radius:6px;
+    padding:8px 13px;
+    cursor:pointer;
+    font:inherit;
 }
 
 .print-btn{
-background:#166534;
-color:#fff
+    background:#166534;
+    color:#fff;
 }
 
 .clear-btn{
-background:#1d4ed8;
-color:#fff
+    background:#1d4ed8;
+    color:#fff;
 }
 
+/* ================= PAGE ================= */
+
 .page{
-width:210mm;
-min-height:297mm;
-margin:auto;
-padding:12mm 14mm;
-background:#fff;
-box-shadow:0 0 8px #bbb
+    width:210mm;
+    min-height:297mm;
+    margin:auto;
+    padding:12mm 14mm;
+    background:#fff;
+    box-shadow:0 0 8px #aaa;
 }
 
 .title{
-text-align:center;
-font-size:17px;
-font-weight:700;
-text-decoration:underline;
-line-height:1.45;
-margin-bottom:24px
+    text-align:center;
+    font-size:17px;
+    font-weight:700;
+    text-decoration:underline;
+    line-height:1.45;
+    margin-bottom:22px;
 }
 
 .heading{
-text-align:center;
-font-size:19px;
-font-weight:700;
-text-decoration:underline;
-margin-bottom:16px
+    text-align:center;
+    font-size:19px;
+    font-weight:700;
+    text-decoration:underline;
+    margin-bottom:15px;
 }
 
 .line{
-margin:9px 0;
-font-size:16px;
-text-align:justify
+    margin:9px 0;
+    font-size:16px;
+    text-align:justify;
 }
 
-input[type=text]{
-border:0;
-border-bottom:1px dotted #222;
-outline:0;
-font:inherit;
-background:transparent;
-padding:0 4px
+input[type="text"]{
+    border:0;
+    border-bottom:1px dotted #222;
+    outline:none;
+    font:inherit;
+    background:transparent;
+    padding:0 4px;
 }
 
-.full{width:220px}
-.medium{width:145px}
-.small{width:95px}
+.full{
+    width:220px;
+}
+
+.medium{
+    width:145px;
+}
+
+.small{
+    width:95px;
+}
+
+/* ================= NOTE ================= */
 
 .note{
-margin-top:15px;
-font-size:15px;
-text-align:justify
+    margin-top:14px;
+    font-size:15px;
+    text-align:justify;
 }
+
+/* ================= TABLE ================= */
 
 table{
-width:100%;
-border-collapse:collapse;
-table-layout:fixed;
-margin-top:22px;
-font-size:15px
+    width:100%;
+    border-collapse:collapse;
+    table-layout:fixed;
+    margin-top:20px;
+    font-size:15px;
 }
 
-th,td{
-border:1px solid #222;
-padding:7px;
-text-align:center;
-vertical-align:middle
+th,
+td{
+    border:1px solid #222;
+    padding:7px;
+    text-align:center;
+    vertical-align:middle;
 }
 
-td[contenteditable=true]{
-height:55px;
-outline:0
+td[contenteditable="true"]{
+    height:52px;
+    outline:none;
 }
 
-/* SIGNATURE */
+/* ================= SIGNATURE AREA ================= */
 
-.signature{
-width:52%;
-margin-left:auto;
-margin-top:40px
+.signature-area{
+    width:52%;
+    margin-left:auto;
+    margin-top:38px;
 }
 
 .sig-row{
-display:flex;
-align-items:baseline;
-margin:17px 0
+    display:flex;
+    align-items:baseline;
+    margin:16px 0;
 }
 
 .sig-label{
-width:80px;
-font-weight:600
+    width:80px;
+    font-weight:600;
 }
 
 .sig-line{
-flex:1;
-min-height:25px;
-border-bottom:1px dotted #222;
-outline:0
+    flex:1;
+    min-height:25px;
+    border-bottom:1px dotted #222;
+    outline:none;
 }
 
-.signature-upload{
-margin-top:16px;
-padding:12px;
-border:1px dashed #777;
-border-radius:8px;
-background:#fafafa
+/* ================= UPLOAD BOX ================= */
+
+.signature-editor-box{
+    margin-top:15px;
+    padding:12px;
+    border:1px dashed #777;
+    border-radius:8px;
+    background:#fafafa;
 }
 
 .upload-label{
-display:block;
-font-weight:700;
-margin-bottom:6px
+    display:block;
+    font-weight:700;
+    margin-bottom:6px;
 }
 
 #signatureFile{
-display:block;
-width:100%;
-padding:5px 0
+    width:100%;
+    padding:5px 0;
 }
 
 .upload-help{
-font-size:12px;
-color:#666
+    font-size:12px;
+    color:#666;
 }
 
+/* ================= PREVIEW ================= */
+
 .signature-preview-wrap{
-display:none;
-margin-top:10px
+    display:none;
+    margin-top:10px;
 }
 
 .signature-preview{
-max-width:240px;
-max-height:90px;
-padding:4px;
-border:1px solid #ddd
+    max-width:260px;
+    max-height:100px;
+    padding:4px;
+    border:1px solid #ddd;
 }
 
+/* ================= BUTTONS ================= */
+
 .signature-tools{
-display:none;
-flex-wrap:wrap;
-gap:6px;
-margin-top:9px
+    display:none;
+    flex-wrap:wrap;
+    gap:6px;
+    margin-top:9px;
 }
 
 .signature-tools button{
-font-size:13px;
-color:#fff;
-background:#166534
+    color:#fff;
+    font-size:13px;
 }
 
-.signature-tools .gray{
-background:#555
+.green{
+    background:#166534;
 }
 
-.signature-tools .orange{
-background:#c2410c
+.gray{
+    background:#555;
 }
 
-.signature-tools .red{
-background:#b91c1c
+.orange{
+    background:#c2410c;
 }
+
+.red{
+    background:#b91c1c;
+}
+
+/* ================= EDITOR ================= */
 
 .editor{
-display:none;
-margin-top:10px;
-padding:9px;
-border:1px solid #ddd;
-border-radius:7px;
-background:#fff
+    display:none;
+    margin-top:10px;
+    padding:9px;
+    border:1px solid #ddd;
+    border-radius:7px;
+    background:#fff;
 }
 
 .canvas-wrap{
-overflow:auto;
-text-align:center;
-padding:8px;
-border:1px solid #ccc;
-background:#fafafa
+    overflow:auto;
+    text-align:center;
+    padding:8px;
+    border:1px solid #ccc;
+    background:#fafafa;
 }
 
 #signatureCanvas{
-max-width:100%;
-height:auto;
-display:block;
-margin:auto
+    max-width:100%;
+    height:auto;
+    display:block;
+    margin:auto;
 }
 
-/* WHATSAPP */
+/* ================= PRINT SIGNATURE ================= */
+
+/*
+   यह area upload controls से अलग है।
+   इसलिए print करते समय signature सुरक्षित रहेगा।
+*/
+
+.print-signature{
+    display:none;
+    margin-top:10px;
+    text-align:right;
+}
+
+.print-signature img{
+    max-width:190px;
+    max-height:75px;
+    object-fit:contain;
+}
+
+/* ================= WHATSAPP ================= */
 
 .channel-box{
-margin:24px auto 0;
-max-width:650px;
-padding:14px;
-border:1px solid #25D366;
-border-radius:10px;
-background:#f0fff5;
-text-align:center
+    margin:25px auto 0;
+    max-width:650px;
+    padding:14px;
+    border:1px solid #25D366;
+    border-radius:10px;
+    background:#f0fff5;
+    text-align:center;
 }
 
 .channel-box h3{
-margin:0
+    margin:0;
 }
 
 .channel-box p{
-margin:5px 0 10px;
-font-size:14px
+    margin:5px 0 10px;
+    font-size:14px;
 }
 
 .join-btn{
-background:#25D366;
-color:#fff;
-font-weight:700
+    background:#25D366;
+    color:#fff;
+    font-weight:700;
 }
 
 .join-check{
-display:block;
-margin-top:8px;
-font-size:14px
+    display:block;
+    margin-top:8px;
+    font-size:14px;
 }
+
+/* ================= INSTRUCTIONS ================= */
 
 .instructions{
-margin-top:20px;
-border-top:1px solid #ddd;
-padding-top:7px;
-font-size:12px;
-color:#666
+    margin-top:20px;
+    border-top:1px solid #ddd;
+    padding-top:7px;
+    font-size:12px;
+    color:#666;
 }
 
-/* MOBILE */
+/* ================= MOBILE ================= */
 
 @media(max-width:700px){
 
-body{
-background:#fff
-}
+    body{
+        background:#fff;
+    }
 
-.toolbar,
-.page{
-width:100%
-}
+    .toolbar{
+        width:100%;
+        padding:8px;
+        margin:0;
+    }
 
-.toolbar{
-padding:8px;
-margin:0
-}
+    .page{
+        width:100%;
+        padding:18px;
+        box-shadow:none;
+    }
 
-.page{
-padding:18px;
-box-shadow:none
-}
+    .full,
+    .medium,
+    .small{
+        max-width:100%;
+    }
 
-.full,
-.medium,
-.small{
-max-width:100%
-}
-
-.signature{
-width:100%
-}
+    .signature-area{
+        width:100%;
+    }
 
 }
 
-/* PRINT */
+/* ================= PRINT ================= */
 
 @media print{
 
-@page{
-size:A4 portrait;
-margin:12mm
+    @page{
+        size:A4 portrait;
+        margin:10mm;
+    }
+
+    body{
+        background:#fff;
+    }
+
+    .toolbar,
+    .signature-editor-box,
+    .channel-box,
+    .instructions{
+        display:none !important;
+    }
+
+    .page{
+        width:100%;
+        min-height:auto;
+        margin:0;
+        padding:0;
+        box-shadow:none;
+    }
+
+    .print-signature{
+        display:block !important;
+    }
+
+    .print-signature img{
+        display:block !important;
+        margin-left:auto;
+        max-width:190px;
+        max-height:75px;
+    }
+
 }
 
-body{
-background:#fff
-}
-
-.toolbar,
-.channel-box,
-.instructions,
-.signature-upload{
-display:none!important
-}
-
-.page{
-width:210mm;
-min-height:297mm;
-margin:0;
-padding:0;
-box-shadow:none
-}
-
-.signature-preview-wrap{
-display:block!important
-}
-
-.signature-preview{
-border:0!important;
-padding:0!important;
-max-width:190px;
-max-height:75px
-}
-
-}
 </style>
 </head>
 
 <body>
+
+<!-- ================= TOOLBAR ================= -->
 
 <div class="toolbar">
 
@@ -362,6 +414,8 @@ onclick="printForm()">
 
 </div>
 
+
+<!-- ================= PAGE ================= -->
 
 <div class="page">
 
@@ -480,6 +534,8 @@ placeholder="आवेदन संख्या">
 </div>
 
 
+<!-- ================= NOTE ================= -->
+
 <div class="note">
 
 <strong>नोट:-</strong>
@@ -492,32 +548,26 @@ placeholder="आवेदन संख्या">
 </div>
 
 
+<!-- ================= TABLE ================= -->
+
 <table>
 
 <tr>
 
 <th style="width:21%"></th>
 
-<th>
-अभ्यर्थी का नाम
-</th>
+<th>अभ्यर्थी का नाम</th>
 
-<th>
-पिता का नाम
-</th>
+<th>पिता का नाम</th>
 
-<th>
-माता का नाम
-</th>
+<th>माता का नाम</th>
 
 </tr>
 
 
 <tr>
 
-<td>
-हिन्दी में
-</td>
+<td>हिन्दी में</td>
 
 <td contenteditable="true"></td>
 
@@ -546,9 +596,9 @@ placeholder="आवेदन संख्या">
 </table>
 
 
-<!-- SIGNATURE -->
+<!-- ================= SIGNATURE ================= -->
 
-<div class="signature">
+<div class="signature-area">
 
 
 <div class="sig-row">
@@ -579,7 +629,9 @@ contenteditable="true">
 </div>
 
 
-<div class="signature-upload">
+<!-- ================= UPLOAD/EDITOR ================= -->
+
+<div class="signature-editor-box">
 
 <label
 class="upload-label"
@@ -598,8 +650,7 @@ accept="image/png,image/jpeg,image/jpg">
 
 <div class="upload-help">
 
-PNG/JPG • अधिकतम 2 MB •
-Mobile में Gallery/Files से signature चुनें
+PNG/JPG • अधिकतम 2 MB
 
 </div>
 
@@ -626,9 +677,9 @@ alt="Signature Preview">
 class="signature-tools"
 id="signatureTools">
 
-
 <button
 type="button"
+class="green"
 onclick="removeBackground()">
 
 🪄 Background Eraser
@@ -665,7 +716,6 @@ onclick="removeSignature()">
 
 </button>
 
-
 </div>
 
 
@@ -673,13 +723,9 @@ onclick="removeSignature()">
 class="editor"
 id="editor">
 
-<div
-style="font-weight:700;margin-bottom:6px">
-
+<strong>
 Signature Editor
-
-</div>
-
+</strong>
 
 <div class="canvas-wrap">
 
@@ -693,17 +739,29 @@ id="signatureCanvas">
 
 </div>
 
+
+<!-- ================= PRINT ONLY SIGNATURE ================= -->
+
+<div
+class="print-signature"
+id="printSignature">
+
+<img
+id="printSignatureImage"
+alt="Signature">
+
+</div>
+
 </div>
 
 
-<!-- WHATSAPP -->
+<!-- ================= WHATSAPP ================= -->
 
 <div class="channel-box">
 
 <h3>
 📢 DEO Office WhatsApp Channel
 </h3>
-
 
 <p>
 
@@ -738,8 +796,7 @@ id="joinedCheck">
 
 <div class="instructions">
 
-घोषणा-पत्र को A4 आकार में
-Print / Save as PDF किया जा सकता है।
+घोषणा-पत्र को A4 आकार में Print / Save as PDF किया जा सकता है।
 
 </div>
 
@@ -748,799 +805,787 @@ Print / Save as PDF किया जा सकता है।
 
 <script>
 
-/* ==========================================
+/* =================================================
    WHATSAPP CHANNEL
-========================================== */
+================================================= */
 
 const CHANNEL_URL =
 "https://whatsapp.com/channel/0029VaIhMoY35fM4YK5xrz3P";
 
-let channelOpened = false;
+let channelOpened=false;
 
 
-/* ==========================================
+/* =================================================
    OPEN CHANNEL
-========================================== */
+================================================= */
 
 function openChannel(){
 
-channelOpened = true;
+    channelOpened=true;
 
-window.open(
-CHANNEL_URL,
-"_blank",
-"noopener,noreferrer"
-);
+    window.open(
+        CHANNEL_URL,
+        "_blank",
+        "noopener,noreferrer"
+    );
 
 }
 
 
-/* ==========================================
-   SIGNATURE
-========================================== */
+/* =================================================
+   SIGNATURE VARIABLES
+================================================= */
 
-let originalImage = null;
-
+let originalImage=null;
 
 const fileInput =
-document.getElementById(
-"signatureFile"
-);
-
+document.getElementById("signatureFile");
 
 const preview =
-document.getElementById(
-"signaturePreview"
-);
-
+document.getElementById("signaturePreview");
 
 const previewWrap =
-document.getElementById(
-"previewWrap"
-);
-
+document.getElementById("previewWrap");
 
 const tools =
-document.getElementById(
-"signatureTools"
-);
-
+document.getElementById("signatureTools");
 
 const editor =
-document.getElementById(
-"editor"
-);
-
+document.getElementById("editor");
 
 const canvas =
-document.getElementById(
-"signatureCanvas"
-);
+document.getElementById("signatureCanvas");
+
+const printSignatureImage =
+document.getElementById("printSignatureImage");
+
+const printSignature =
+document.getElementById("printSignature");
 
 
 let ctx =
 canvas.getContext(
-"2d",
-{
-willReadFrequently:true
-}
+    "2d",
+    {
+        willReadFrequently:true
+    }
 );
 
 
-/* ==========================================
+/* =================================================
    UPLOAD
-========================================== */
+================================================= */
 
 fileInput.addEventListener(
 "change",
 function(){
 
-const file =
-this.files &&
-this.files[0];
+    const file =
+    this.files && this.files[0];
 
-if(!file){
-return;
-}
-
-
-/* TYPE */
-
-if(
-![
-"image/png",
-"image/jpeg",
-"image/jpg"
-].includes(file.type)
-){
-
-alert(
-"केवल PNG या JPG हस्ताक्षर upload करें।"
-);
-
-this.value = "";
-
-return;
-
-}
+    if(!file){
+        return;
+    }
 
 
-/* SIZE */
+    /* File type */
 
-if(
-file.size >
-2 * 1024 * 1024
-){
+    if(
+        ![
+            "image/png",
+            "image/jpeg",
+            "image/jpg"
+        ].includes(file.type)
+    ){
 
-alert(
-"Signature image 2 MB से अधिक नहीं होनी चाहिए।"
-);
+        alert(
+            "केवल PNG या JPG signature upload करें।"
+        );
 
-this.value = "";
+        this.value="";
 
-return;
-
-}
-
-
-const reader =
-new FileReader();
+        return;
+    }
 
 
-reader.onload =
-function(e){
+    /* File size */
 
-const img =
-new Image();
+    if(
+        file.size >
+        2 * 1024 * 1024
+    ){
 
+        alert(
+            "Signature image 2 MB से अधिक नहीं होनी चाहिए।"
+        );
 
-img.onload =
-function(){
+        this.value="";
 
-originalImage = img;
-
-
-/* Resize large image */
-
-const maxWidth = 1000;
-
-const scale =
-Math.min(
-1,
-maxWidth /
-img.naturalWidth
-);
+        return;
+    }
 
 
-canvas.width =
-Math.max(
-1,
-Math.round(
-img.naturalWidth *
-scale
-)
-);
+    const reader =
+    new FileReader();
 
 
-canvas.height =
-Math.max(
-1,
-Math.round(
-img.naturalHeight *
-scale
-)
-);
+    reader.onload =
+    function(e){
+
+        const img =
+        new Image();
 
 
-ctx =
-canvas.getContext(
-"2d",
-{
-willReadFrequently:true
-}
-);
+        img.onload =
+        function(){
+
+            originalImage=img;
 
 
-ctx.clearRect(
-0,
-0,
-canvas.width,
-canvas.height
-);
+            const maxWidth=1000;
 
 
-ctx.drawImage(
-img,
-0,
-0,
-canvas.width,
-canvas.height
-);
+            const scale =
+            Math.min(
+                1,
+                maxWidth /
+                img.naturalWidth
+            );
 
 
-editor.style.display =
-"block";
+            canvas.width =
+            Math.max(
+                1,
+                Math.round(
+                    img.naturalWidth *
+                    scale
+                )
+            );
 
 
-tools.style.display =
-"flex";
+            canvas.height =
+            Math.max(
+                1,
+                Math.round(
+                    img.naturalHeight *
+                    scale
+                )
+            );
 
 
-updatePreview();
-
-};
-
-
-img.onerror =
-function(){
-
-alert(
-"Signature image पढ़ी नहीं जा सकी। कृपया दूसरी JPG/PNG file चुनें।"
-);
-
-};
+            ctx =
+            canvas.getContext(
+                "2d",
+                {
+                    willReadFrequently:true
+                }
+            );
 
 
-img.src =
-e.target.result;
-
-};
-
-
-reader.onerror =
-function(){
-
-alert(
-"File पढ़ने में समस्या हुई। कृपया दोबारा प्रयास करें।"
-);
-
-};
+            ctx.clearRect(
+                0,
+                0,
+                canvas.width,
+                canvas.height
+            );
 
 
-reader.readAsDataURL(file);
+            ctx.drawImage(
+                img,
+                0,
+                0,
+                canvas.width,
+                canvas.height
+            );
 
-}
-);
+
+            editor.style.display="block";
+
+            tools.style.display="flex";
 
 
-/* ==========================================
-   PREVIEW
-========================================== */
+            updatePreview();
+
+        };
+
+
+        img.onerror =
+        function(){
+
+            alert(
+                "Signature image पढ़ी नहीं जा सकी।"
+            );
+
+        };
+
+
+        img.src=e.target.result;
+
+    };
+
+
+    reader.readAsDataURL(file);
+
+});
+
+
+/* =================================================
+   UPDATE PREVIEW + PRINT SIGNATURE
+================================================= */
 
 function updatePreview(){
 
-preview.src =
-canvas.toDataURL(
-"image/png"
-);
+    const dataURL =
+    canvas.toDataURL(
+        "image/png"
+    );
 
-previewWrap.style.display =
-"block";
+
+    /* Editor preview */
+
+    preview.src=dataURL;
+
+    previewWrap.style.display="block";
+
+
+    /* PRINT PREVIEW */
+
+    printSignatureImage.src=dataURL;
+
+    printSignature.style.display="block";
 
 }
 
 
-/* ==========================================
+/* =================================================
    BACKGROUND ERASER
-========================================== */
+================================================= */
 
 function removeBackground(){
 
-if(
-!canvas.width ||
-!canvas.height
-){
-
-return;
-
-}
+    if(
+        !canvas.width ||
+        !canvas.height
+    ){
+        return;
+    }
 
 
-const imageData =
-ctx.getImageData(
-0,
-0,
-canvas.width,
-canvas.height
-);
+    const imageData =
+    ctx.getImageData(
+        0,
+        0,
+        canvas.width,
+        canvas.height
+    );
 
 
-const d =
-imageData.data;
+    const d=imageData.data;
 
 
-for(
-let i=0;
-i<d.length;
-i+=4
-){
+    for(
+        let i=0;
+        i<d.length;
+        i+=4
+    ){
 
-const r=d[i];
+        const r=d[i];
 
-const g=d[i+1];
+        const g=d[i+1];
 
-const b=d[i+2];
-
-
-const brightness =
-(r+g+b)/3;
+        const b=d[i+2];
 
 
-const spread =
-Math.max(r,g,b) -
-Math.min(r,g,b);
+        const brightness =
+        (r+g+b)/3;
 
 
-/* White */
-
-if(
-brightness >= 245 &&
-spread <= 20
-){
-
-d[i+3] = 0;
-
-}
+        const spread =
+        Math.max(r,g,b) -
+        Math.min(r,g,b);
 
 
-/* Light background */
+        /* White */
 
-else if(
-brightness >= 215 &&
-spread <= 30
-){
+        if(
+            brightness>=245 &&
+            spread<=20
+        ){
 
-d[i+3] =
-Math.max(
-0,
-Math.min(
-255,
-(245-brightness)*8
-)
-);
+            d[i+3]=0;
 
-}
-
-}
+        }
 
 
-ctx.putImageData(
-imageData,
-0,
-0
-);
+        /* Light grey/white */
+
+        else if(
+            brightness>=215 &&
+            spread<=30
+        ){
+
+            d[i+3]=
+            Math.max(
+                0,
+                Math.min(
+                    255,
+                    (245-brightness)*8
+                )
+            );
+
+        }
+
+    }
 
 
-updatePreview();
+    ctx.putImageData(
+        imageData,
+        0,
+        0
+    );
+
+
+    updatePreview();
 
 }
 
 
-/* ==========================================
-   RESTORE
-========================================== */
+/* =================================================
+   RESTORE ORIGINAL
+================================================= */
 
 function restoreOriginal(){
 
-if(!originalImage){
-
-return;
-
-}
+    if(!originalImage){
+        return;
+    }
 
 
-const maxWidth =
-1000;
+    const maxWidth=1000;
 
 
-const scale =
-Math.min(
-1,
-maxWidth /
-originalImage.naturalWidth
-);
+    const scale =
+    Math.min(
+        1,
+        maxWidth /
+        originalImage.naturalWidth
+    );
 
 
-canvas.width =
-Math.max(
-1,
-Math.round(
-originalImage.naturalWidth *
-scale
-)
-);
+    canvas.width =
+    Math.max(
+        1,
+        Math.round(
+            originalImage.naturalWidth *
+            scale
+        )
+    );
 
 
-canvas.height =
-Math.max(
-1,
-Math.round(
-originalImage.naturalHeight *
-scale
-)
-);
+    canvas.height =
+    Math.max(
+        1,
+        Math.round(
+            originalImage.naturalHeight *
+            scale
+        )
+    );
 
 
-ctx =
-canvas.getContext(
-"2d",
-{
-willReadFrequently:true
-}
-);
+    ctx =
+    canvas.getContext(
+        "2d",
+        {
+            willReadFrequently:true
+        }
+    );
 
 
-ctx.clearRect(
-0,
-0,
-canvas.width,
-canvas.height
-);
+    ctx.clearRect(
+        0,
+        0,
+        canvas.width,
+        canvas.height
+    );
 
 
-ctx.drawImage(
-originalImage,
-0,
-0,
-canvas.width,
-canvas.height
-);
+    ctx.drawImage(
+        originalImage,
+        0,
+        0,
+        canvas.width,
+        canvas.height
+    );
 
 
-updatePreview();
+    updatePreview();
 
 }
 
 
-/* ==========================================
+/* =================================================
    CROP
-========================================== */
+================================================= */
 
 function cropSignature(){
 
-if(
-!canvas.width ||
-!canvas.height
-){
+    if(
+        !canvas.width ||
+        !canvas.height
+    ){
 
-alert(
-"पहले signature upload करें।"
-);
+        alert(
+            "पहले signature upload करें।"
+        );
 
-return;
+        return;
+    }
+
+
+    const w=canvas.width;
+
+    const h=canvas.height;
+
+
+    const imageData =
+    ctx.getImageData(
+        0,
+        0,
+        w,
+        h
+    );
+
+
+    const d=imageData.data;
+
+
+    let minX=w;
+
+    let minY=h;
+
+    let maxX=-1;
+
+    let maxY=-1;
+
+
+    /* Detect signature pixels */
+
+    for(
+        let y=0;
+        y<h;
+        y++
+    ){
+
+        for(
+            let x=0;
+            x<w;
+            x++
+        ){
+
+            const i =
+            (y*w+x)*4;
+
+
+            const r=d[i];
+
+            const g=d[i+1];
+
+            const b=d[i+2];
+
+            const a=d[i+3];
+
+
+            if(a<15){
+                continue;
+            }
+
+
+            const brightness =
+            (r+g+b)/3;
+
+
+            const spread =
+            Math.max(r,g,b) -
+            Math.min(r,g,b);
+
+
+            /*
+              Dark pixels or
+              clearly non-white pixels
+            */
+
+            if(
+                brightness<225 ||
+                spread>35
+            ){
+
+                if(x<minX)
+                minX=x;
+
+
+                if(y<minY)
+                minY=y;
+
+
+                if(x>maxX)
+                maxX=x;
+
+
+                if(y>maxY)
+                maxY=y;
+
+            }
+
+        }
+
+    }
+
+
+    if(maxX<0){
+
+        alert(
+            "Signature detect नहीं हुआ। कृपया साफ signature image चुनें।"
+        );
+
+        return;
+    }
+
+
+    /* Padding */
+
+    const padding =
+    Math.max(
+        8,
+        Math.round(
+            Math.min(w,h)*0.02
+        )
+    );
+
+
+    minX =
+    Math.max(
+        0,
+        minX-padding
+    );
+
+
+    minY =
+    Math.max(
+        0,
+        minY-padding
+    );
+
+
+    maxX =
+    Math.min(
+        w-1,
+        maxX+padding
+    );
+
+
+    maxY =
+    Math.min(
+        h-1,
+        maxY+padding
+    );
+
+
+    const cropped =
+    ctx.getImageData(
+        minX,
+        minY,
+        maxX-minX+1,
+        maxY-minY+1
+    );
+
+
+    canvas.width=
+    cropped.width;
+
+
+    canvas.height=
+    cropped.height;
+
+
+    ctx =
+    canvas.getContext(
+        "2d",
+        {
+            willReadFrequently:true
+        }
+    );
+
+
+    ctx.clearRect(
+        0,
+        0,
+        canvas.width,
+        canvas.height
+    );
+
+
+    ctx.putImageData(
+        cropped,
+        0,
+        0
+    );
+
+
+    updatePreview();
 
 }
 
 
-const w =
-canvas.width;
-
-
-const h =
-canvas.height;
-
-
-const imageData =
-ctx.getImageData(
-0,
-0,
-w,
-h
-);
-
-
-const d =
-imageData.data;
-
-
-let minX=w;
-
-let minY=h;
-
-let maxX=-1;
-
-let maxY=-1;
-
-
-/* Detect signature */
-
-for(
-let y=0;
-y<h;
-y++
-){
-
-for(
-let x=0;
-x<w;
-x++
-){
-
-const i =
-(y*w+x)*4;
-
-
-const r =
-d[i];
-
-const g =
-d[i+1];
-
-const b =
-d[i+2];
-
-const a =
-d[i+3];
-
-
-if(a < 15){
-
-continue;
-
-}
-
-
-const brightness =
-(r+g+b)/3;
-
-
-const spread =
-Math.max(r,g,b) -
-Math.min(r,g,b);
-
-
-/* Dark/non-white ink */
-
-if(
-brightness < 225 ||
-spread > 35
-){
-
-if(x < minX)
-minX=x;
-
-if(y < minY)
-minY=y;
-
-if(x > maxX)
-maxX=x;
-
-if(y > maxY)
-maxY=y;
-
-}
-
-}
-
-}
-
-
-if(maxX < 0){
-
-alert(
-"Signature detect नहीं हुआ। साफ signature वाली image चुनें।"
-);
-
-return;
-
-}
-
-
-/* Padding */
-
-const padding =
-Math.max(
-8,
-Math.round(
-Math.min(w,h)*0.02
-)
-);
-
-
-minX =
-Math.max(
-0,
-minX-padding
-);
-
-
-minY =
-Math.max(
-0,
-minY-padding
-);
-
-
-maxX =
-Math.min(
-w-1,
-maxX+padding
-);
-
-
-maxY =
-Math.min(
-h-1,
-maxY+padding
-);
-
-
-const cropped =
-ctx.getImageData(
-minX,
-minY,
-maxX-minX+1,
-maxY-minY+1
-);
-
-
-canvas.width =
-cropped.width;
-
-
-canvas.height =
-cropped.height;
-
-
-ctx =
-canvas.getContext(
-"2d",
-{
-willReadFrequently:true
-}
-);
-
-
-ctx.clearRect(
-0,
-0,
-canvas.width,
-canvas.height
-);
-
-
-ctx.putImageData(
-cropped,
-0,
-0
-);
-
-
-updatePreview();
-
-}
-
-
-/* ==========================================
-   REMOVE
-========================================== */
+/* =================================================
+   REMOVE SIGNATURE
+================================================= */
 
 function removeSignature(){
 
-fileInput.value = "";
-
-preview.removeAttribute(
-"src"
-);
-
-previewWrap.style.display =
-"none";
-
-tools.style.display =
-"none";
-
-editor.style.display =
-"none";
-
-originalImage = null;
+    fileInput.value="";
 
 
-if(
-canvas.width &&
-canvas.height
-){
+    preview.removeAttribute(
+        "src"
+    );
 
-ctx.clearRect(
-0,
-0,
-canvas.width,
-canvas.height
-);
+
+    previewWrap.style.display="none";
+
+
+    tools.style.display="none";
+
+
+    editor.style.display="none";
+
+
+    printSignature.style.display="none";
+
+
+    printSignatureImage.removeAttribute(
+        "src"
+    );
+
+
+    originalImage=null;
+
+
+    if(
+        canvas.width &&
+        canvas.height
+    ){
+
+        ctx.clearRect(
+            0,
+            0,
+            canvas.width,
+            canvas.height
+        );
+
+    }
 
 }
 
-}
 
-
-/* ==========================================
+/* =================================================
    PRINT
-========================================== */
+================================================= */
 
 function printForm(){
 
-const joined =
-document.getElementById(
-"joinedCheck"
-).checked;
+    const joined =
+    document.getElementById(
+        "joinedCheck"
+    ).checked;
 
 
-if(
-!channelOpened ||
-!joined
-){
+    if(
+        !channelOpened ||
+        !joined
+    ){
 
-alert(
-"कृपया पहले DEO Office WhatsApp Channel Join करें और confirmation checkbox को tick करें।"
-);
+        alert(
+            "कृपया पहले DEO Office WhatsApp Channel Join करें और confirmation checkbox को tick करें।"
+        );
 
-return;
+        return;
+    }
+
+
+    /*
+      Ensure latest signature is
+      transferred to print area.
+    */
+
+    if(canvas.width && canvas.height){
+
+        updatePreview();
+
+    }
+
+
+    window.print();
 
 }
 
 
-window.print();
-
-}
-
-
-/* ==========================================
-   CLEAR
-========================================== */
+/* =================================================
+   CLEAR FORM
+================================================= */
 
 function clearForm(){
 
-if(
-!confirm(
-"क्या आप सभी भरी हुई जानकारी साफ करना चाहते हैं?"
-)
-){
+    if(
+        !confirm(
+            "क्या आप सभी भरी हुई जानकारी साफ करना चाहते हैं?"
+        )
+    ){
 
-return;
-
-}
-
-
-document
-.querySelectorAll(
-'input[type="text"]'
-)
-.forEach(
-function(el){
-
-if(
-el.value !== "बिहार"
-){
-
-el.value="";
-
-}
-
-}
-);
+        return;
+    }
 
 
-document
-.querySelectorAll(
-'[contenteditable="true"]'
-)
-.forEach(
-function(el){
+    document
+    .querySelectorAll(
+        'input[type="text"]'
+    )
+    .forEach(
+        function(el){
 
-el.innerHTML="";
+            if(
+                el.value!=="बिहार"
+            ){
 
-}
-);
+                el.value="";
 
+            }
 
-removeSignature();
-
-
-document.getElementById(
-"joinedCheck"
-).checked=false;
+        }
+    );
 
 
-channelOpened=false;
+    document
+    .querySelectorAll(
+        '[contenteditable="true"]'
+    )
+    .forEach(
+        function(el){
+
+            el.innerHTML="";
+
+        }
+    );
+
+
+    removeSignature();
+
+
+    document.getElementById(
+        "joinedCheck"
+    ).checked=false;
+
+
+    channelOpened=false;
 
 }
 
