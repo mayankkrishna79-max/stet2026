@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>STET Declaration</title>
+<title></title>
 
 <style>
 
@@ -18,9 +18,14 @@ html,body{
 }
 
 body{
-    background:#eee;
+    background:#eeeeee;
     color:#111;
-    font-family:"Noto Sans Devanagari","Mangal","Arial Unicode MS",Arial,sans-serif;
+    font-family:
+    "Noto Sans Devanagari",
+    "Mangal",
+    "Arial Unicode MS",
+    Arial,
+    sans-serif;
     line-height:1.55;
 }
 
@@ -52,7 +57,7 @@ button{
     color:#fff;
 }
 
-/* ================= PAGE ================= */
+/* ================= A4 PAGE ================= */
 
 .page{
     width:210mm;
@@ -62,6 +67,8 @@ button{
     background:#fff;
     box-shadow:0 0 8px #aaa;
 }
+
+/* ================= TITLE ================= */
 
 .title{
     text-align:center;
@@ -79,6 +86,8 @@ button{
     text-decoration:underline;
     margin-bottom:15px;
 }
+
+/* ================= TEXT ================= */
 
 .line{
     margin:9px 0;
@@ -161,7 +170,6 @@ td[contenteditable="true"]{
     flex:1;
     min-height:25px;
     border-bottom:1px dotted #222;
-    outline:none;
 }
 
 /* ================= WHATSAPP ================= */
@@ -234,21 +242,31 @@ td[contenteditable="true"]{
     .signature-area{
         width:100%;
     }
+
 }
 
 /* ================= PRINT ================= */
 
 @media print{
 
+    /*
+       Browser के अपने header/footer को
+       HTML control नहीं कर सकता।
+       Document का अपना margin blank रखा गया है।
+    */
+
     @page{
         size:A4 portrait;
-        margin:10mm;
+        margin:0;
     }
 
     html,
     body{
         width:210mm;
-        background:#fff;
+        min-height:297mm;
+        margin:0 !important;
+        padding:0 !important;
+        background:#fff !important;
     }
 
     .toolbar,
@@ -258,16 +276,33 @@ td[contenteditable="true"]{
     }
 
     .page{
-        width:100%;
-        min-height:auto;
-        margin:0;
-        padding:0;
-        box-shadow:none;
+        width:210mm;
+        min-height:297mm;
+        margin:0 !important;
+        padding:12mm 14mm;
+        box-shadow:none !important;
+        background:#fff;
     }
 
     input{
-        color:#000;
+        color:#000 !important;
     }
+
+    input::placeholder{
+        color:transparent !important;
+    }
+
+}
+
+/* ================= PRINT PREVIEW ================= */
+
+@media print{
+
+    a{
+        color:#000;
+        text-decoration:none;
+    }
+
 }
 
 </style>
@@ -275,32 +310,41 @@ td[contenteditable="true"]{
 
 <body>
 
-<!-- TOOLBAR -->
+
+<!-- ================= TOOLBAR ================= -->
 
 <div class="toolbar">
 
 <button
 class="clear-btn"
 onclick="clearForm()">
+
 फॉर्म साफ करें
+
 </button>
+
 
 <button
 class="print-btn"
 onclick="printForm()">
+
 🖨️ Print / PDF
+
 </button>
 
 </div>
 
 
-<!-- A4 PAGE -->
+<!-- ================= A4 DOCUMENT ================= -->
 
 <div class="page">
 
+
 <div class="title">
 
-विद्यालय अध्यापक (TRE-4.0) भर्ती परीक्षा हेतु माध्यमिक शिक्षक पात्रता परीक्षा<br>
+विद्यालय अध्यापक (TRE-4.0) भर्ती परीक्षा हेतु माध्यमिक शिक्षक पात्रता परीक्षा
+
+<br>
 
 (STET), 2026 में सम्मिलित होने वाले अभ्यर्थियों के लिए स्व-घोषणा
 
@@ -308,9 +352,13 @@ onclick="printForm()">
 
 
 <div class="heading">
+
 घोषणा
+
 </div>
 
+
+<!-- ================= FIRST LINE ================= -->
 
 <div class="line">
 
@@ -330,6 +378,8 @@ placeholder="पिता का नाम">
 
 </div>
 
+
+<!-- ================= SECOND LINE ================= -->
 
 <div class="line">
 
@@ -359,6 +409,8 @@ placeholder="आधार संख्या">
 </div>
 
 
+<!-- ================= THIRD LINE ================= -->
+
 <div class="line">
 
 ग्राम/शहर
@@ -384,6 +436,8 @@ placeholder="थाना">
 
 </div>
 
+
+<!-- ================= FOURTH LINE ================= -->
 
 <div class="line">
 
@@ -413,7 +467,7 @@ placeholder="आवेदन संख्या">
 </div>
 
 
-<!-- NOTE -->
+<!-- ================= NOTE ================= -->
 
 <div class="note">
 
@@ -427,7 +481,7 @@ placeholder="आवेदन संख्या">
 </div>
 
 
-<!-- TABLE -->
+<!-- ================= NAME TABLE ================= -->
 
 <table>
 
@@ -435,18 +489,26 @@ placeholder="आवेदन संख्या">
 
 <th style="width:21%"></th>
 
-<th>अभ्यर्थी का नाम</th>
+<th>
+अभ्यर्थी का नाम
+</th>
 
-<th>पिता का नाम</th>
+<th>
+पिता का नाम
+</th>
 
-<th>माता का नाम</th>
+<th>
+माता का नाम
+</th>
 
 </tr>
 
 
 <tr>
 
-<td>हिन्दी में</td>
+<td>
+हिन्दी में
+</td>
 
 <td contenteditable="true"></td>
 
@@ -460,7 +522,8 @@ placeholder="आवेदन संख्या">
 <tr>
 
 <td>
-अंग्रेजी में<br>
+अंग्रेजी में
+<br>
 <strong>(Capital Letter)</strong>
 </td>
 
@@ -475,14 +538,17 @@ placeholder="आवेदन संख्या">
 </table>
 
 
-<!-- SIGNATURE -->
+<!-- ================= SIGNATURE ================= -->
 
 <div class="signature-area">
+
 
 <div class="sig-row">
 
 <div class="sig-label">
+
 नाम:-
+
 </div>
 
 <div
@@ -496,30 +562,38 @@ contenteditable="true">
 <div class="sig-row">
 
 <div class="sig-label">
+
 हस्ताक्षर:-
-</div>
-
-<div
-class="sig-line">
-</div>
 
 </div>
 
+<div class="sig-line">
+</div>
+
 </div>
 
 
-<!-- WHATSAPP -->
+</div>
+
+
+<!-- ================= WHATSAPP ================= -->
 
 <div class="channel-box">
 
 <h3>
+
 📢 DEO Office WhatsApp Channel
+
 </h3>
 
+
 <p>
+
 शिक्षा विभाग एवं शिक्षक संबंधी महत्वपूर्ण अपडेट पाने के लिए
 हमारे WhatsApp Channel से जुड़ें।
+
 </p>
+
 
 <button
 type="button"
@@ -529,6 +603,7 @@ onclick="openChannel()">
 📲 WhatsApp Channel Join करें
 
 </button>
+
 
 <label class="join-check">
 
@@ -543,24 +618,34 @@ id="joinedCheck">
 </div>
 
 
+<!-- ================= INSTRUCTIONS ================= -->
+
 <div class="instructions">
 
 घोषणा-पत्र को A4 आकार में Print / Save as PDF किया जा सकता है।
 
 </div>
 
+
 </div>
 
 
 <script>
 
-/* ================= WHATSAPP CHANNEL ================= */
+/* =================================================
+   WHATSAPP CHANNEL
+================================================= */
 
 const CHANNEL_URL =
 "https://whatsapp.com/channel/0029VaIhMoY35fM4YK5xrz3P";
 
+
 let channelOpened = false;
 
+
+/* =================================================
+   OPEN WHATSAPP CHANNEL
+================================================= */
 
 function openChannel(){
 
@@ -575,7 +660,9 @@ function openChannel(){
 }
 
 
-/* ================= PRINT ================= */
+/* =================================================
+   PRINT
+================================================= */
 
 function printForm(){
 
@@ -584,6 +671,10 @@ function printForm(){
         "joinedCheck"
     ).checked;
 
+
+    /*
+       Channel join compulsory
+    */
 
     if(
         !channelOpened ||
@@ -598,15 +689,27 @@ function printForm(){
     }
 
 
+    /*
+       Browser print title blank
+    */
+
     const oldTitle =
     document.title;
 
-    document.title =
-    "STET Declaration";
 
+    document.title = "";
+
+
+    /*
+       Print
+    */
 
     window.print();
 
+
+    /*
+       Restore title
+    */
 
     setTimeout(
         function(){
@@ -621,18 +724,28 @@ function printForm(){
 }
 
 
-/* ================= CLEAR FORM ================= */
+/* =================================================
+   CLEAR FORM
+================================================= */
 
 function clearForm(){
 
-    if(
-        !confirm(
-            "क्या आप सभी भरी हुई जानकारी साफ करना चाहते हैं?"
-        )
-    ){
+    const confirmClear =
+    confirm(
+        "क्या आप सभी भरी हुई जानकारी साफ करना चाहते हैं?"
+    );
+
+
+    if(!confirmClear){
+
         return;
+
     }
 
+
+    /*
+       Clear text inputs
+    */
 
     document
     .querySelectorAll(
@@ -640,6 +753,10 @@ function clearForm(){
     )
     .forEach(
         function(el){
+
+            /*
+               Bihar को रहने दें
+            */
 
             if(
                 el.value !== "बिहार"
@@ -652,6 +769,10 @@ function clearForm(){
         }
     );
 
+
+    /*
+       Clear editable table cells
+    */
 
     document
     .querySelectorAll(
@@ -666,10 +787,18 @@ function clearForm(){
     );
 
 
+    /*
+       Reset checkbox
+    */
+
     document.getElementById(
         "joinedCheck"
     ).checked = false;
 
+
+    /*
+       Reset channel status
+    */
 
     channelOpened = false;
 
