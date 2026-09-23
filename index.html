@@ -2,6 +2,7 @@
 <html lang="hi">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>विद्यालय अध्यापक स्व-घोषणा पत्र</title>
   <style>
     * {
@@ -18,101 +19,104 @@
       align-items: center;
     }
 
-    /* Popup Modal Styles */
+    /* Modal / Popup Styles */
     .modal-overlay {
       position: fixed;
       top: 0;
       left: 0;
       width: 100vw;
       height: 100vh;
-      background: rgba(0, 0, 0, 0.78);
+      background: rgba(0, 0, 0, 0.85);
       display: flex;
       justify-content: center;
       align-items: center;
       z-index: 99999;
-      backdrop-filter: blur(4px);
+      backdrop-filter: blur(5px);
+      padding: 15px;
     }
 
     .modal-box {
       background: #ffffff;
-      padding: 30px;
+      padding: 25px 20px;
       border-radius: 12px;
-      width: 90%;
-      max-width: 480px;
+      width: 100%;
+      max-width: 440px;
       text-align: center;
       box-shadow: 0 10px 25px rgba(0,0,0,0.3);
       animation: popIn 0.3s ease-out;
     }
 
     @keyframes popIn {
-      from { transform: scale(0.85); opacity: 0; }
+      from { transform: scale(0.9); opacity: 0; }
       to { transform: scale(1); opacity: 1; }
     }
 
     .modal-box h2 {
       margin-top: 0;
       color: #dc3545;
-      font-size: 22px;
+      font-size: 21px;
     }
 
     .modal-box p {
       font-size: 15px;
       color: #333;
       line-height: 1.6;
-      margin: 15px 0 22px 0;
+      margin: 12px 0 18px 0;
     }
 
-    .btn-join {
-      display: inline-block;
-      background-color: #0088cc; /* Telegram blue, or use #25D366 for WhatsApp */
-      color: white;
-      text-decoration: none;
-      padding: 12px 24px;
-      font-size: 16px;
-      font-weight: bold;
-      border-radius: 6px;
-      margin-bottom: 18px;
-      transition: background 0.2s;
-    }
-
-    .btn-join:hover {
-      background-color: #006699;
-    }
-
-    .check-container {
-      display: flex;
+    .btn-whatsapp {
+      display: inline-flex;
       align-items: center;
       justify-content: center;
       gap: 8px;
-      margin-bottom: 20px;
-      font-size: 14px;
-      cursor: pointer;
-      user-select: none;
+      background-color: #25D366;
+      color: white;
+      text-decoration: none;
+      padding: 12px 20px;
+      font-size: 15px;
+      font-weight: bold;
+      border-radius: 30px;
+      margin-bottom: 15px;
+      box-shadow: 0 4px 10px rgba(37, 211, 102, 0.35);
+      width: 100%;
+    }
+
+    .btn-whatsapp:hover {
+      background-color: #1eb956;
+    }
+
+    .status-msg {
+      font-size: 13.5px;
+      color: #dc3545;
+      margin-bottom: 15px;
+      font-weight: bold;
     }
 
     .btn-continue {
       width: 100%;
       padding: 11px;
-      background: #28a745;
+      background: #0d6efd;
       color: white;
       border: none;
       border-radius: 6px;
-      font-size: 16px;
+      font-size: 15px;
       font-weight: bold;
       cursor: pointer;
+      transition: background 0.2s;
     }
 
     .btn-continue:disabled {
-      background: #a5d6a7;
+      background: #b0c4de;
       cursor: not-allowed;
     }
 
-    /* Print Control Bar */
+    /* Controls Bar */
     .controls-bar {
-      width: 210mm;
+      width: 100%;
+      max-width: 210mm;
       display: flex;
       justify-content: flex-end;
-      gap: 12px;
+      gap: 10px;
       margin-bottom: 12px;
     }
 
@@ -133,20 +137,12 @@
       color: #fff;
     }
 
-    .btn-print:hover {
-      background-color: #0b5ed7;
-    }
-
     .btn-reset {
       background-color: #6c757d;
       color: #fff;
     }
 
-    .btn-reset:hover {
-      background-color: #5c636a;
-    }
-
-    /* Form Container - Exactly fitted for single A4 page */
+    /* Form Container */
     .form-container {
       background-color: #ffffff;
       width: 210mm;
@@ -181,10 +177,9 @@
     .declaration-text {
       text-align: justify;
       margin-bottom: 12px;
-      line-height: 1.95;
+      line-height: 2.1;
     }
 
-    /* Editable Dotted Field */
     .editable-input {
       border: none;
       border-bottom: 1px dotted #000;
@@ -210,11 +205,17 @@
       line-height: 1.6;
     }
 
-    /* Table */
+    /* Table Container for Mobile Scrolling */
+    .table-responsive {
+      width: 100%;
+      overflow-x: auto;
+    }
+
     .details-table {
       width: 100%;
       border-collapse: collapse;
       margin-bottom: 30px;
+      min-width: 500px;
     }
 
     .details-table th, 
@@ -257,7 +258,6 @@
       text-transform: uppercase;
     }
 
-    /* Footer / Signature */
     .footer-section {
       display: flex;
       flex-direction: column;
@@ -280,7 +280,30 @@
       margin-left: 6px;
     }
 
-    /* Force strict single page on print */
+    /* Mobile Responsive Screen View */
+    @media screen and (max-width: 768px) {
+      body {
+        padding: 8px;
+      }
+      .form-container {
+        width: 100%;
+        max-width: 100%;
+        padding: 16px 12px;
+      }
+      .declaration-text {
+        font-size: 14px;
+        line-height: 2.2;
+      }
+      .editable-input {
+        width: 120px !important;
+        font-size: 13.5px;
+      }
+      .footer-field .editable-input {
+        width: 150px !important;
+      }
+    }
+
+    /* Print Setup (Always Clean Single Page A4) */
     @page {
       size: A4 portrait;
       margin: 0;
@@ -301,7 +324,10 @@
         box-shadow: none;
         padding: 16mm 18mm !important;
         width: 100% !important;
-        min-height: auto !important;
+        max-width: 100% !important;
+      }
+      .details-table {
+        min-width: 100% !important;
       }
       .editable-input:focus,
       .table-input:focus {
@@ -312,24 +338,26 @@
 </head>
 <body>
 
-  <!-- Mandatory Join Modal Popup -->
+  <!-- Mandatory Join Popup -->
   <div id="joinModal" class="modal-overlay">
     <div class="modal-box">
       <h2>⚠️ आवश्यक सूचना</h2>
       <p>
         इस फॉर्म को भरने एवं प्रिंट करने से पहले सभी अभ्यर्थियों को 
-        <strong>DEO Office आधिकारिक चैनल</strong> जॉइन करना अनिवार्य है।
+        <strong>DEO Office WhatsApp Channel</strong> जॉइन करना अनिवार्य है।
       </p>
       
-      <!-- Replace the href with your actual Telegram or WhatsApp Channel link -->
-      <a href="https://whatsapp.com/channel/0029VaIhMoY35fM4YK5xrz3P" target="_blank" class="btn-join" onclick="enableProceed()">
-        📢 DEO Office चैनल जॉइन करें
+      <!-- Provided WhatsApp Channel Link -->
+      <a href="https://whatsapp.com/channel/0029VaIhMoY35fM4YK5xrz3P" 
+         target="_blank" 
+         class="btn-whatsapp" 
+         onclick="channelLinkClicked()">
+        🟢 WhatsApp चैनल जॉइन करें
       </a>
 
-      <label class="check-container">
-        <input type="checkbox" id="joinedCheck" onchange="toggleContinueBtn()">
-        मैंने DEO Office चैनल जॉइन कर लिया है
-      </label>
+      <div id="statusNotice" class="status-msg">
+        (कृपया पहले ऊपर दिए गए लिंक पर क्लिक करें)
+      </div>
 
       <button id="continueBtn" class="btn-continue" disabled onclick="closeModal()">
         आगे बढ़ें (Proceed to Form)
@@ -343,7 +371,7 @@
       🔄 रीसेट (Clear)
     </button>
     <button class="btn btn-print" type="button" onclick="window.print()">
-      🖨️ प्रिंट करें (Print Form)
+      🖨️ प्रिंट करें (Print)
     </button>
   </div>
 
@@ -387,33 +415,35 @@
       <strong>नोट:-</strong> मैं घोषणा करता/करती हूँ कि उक्त जानकारी सत्य एवं वैध है। यदि कोई भी जानकारी असत्य पाई जाती है, तो मेरी उम्मीदवारी रद्द करने का अधिकार आयोग के पास होगा, जिसके लिए मैं स्वयं जिम्मेवार रहूँगा/रहूँगी।
     </div>
 
-    <table class="details-table">
-      <thead>
-        <tr>
-          <th></th>
-          <th>अभ्यर्थी का नाम</th>
-          <th>पिता का नाम</th>
-          <th>माता का नाम</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><strong>हिन्दी में</strong></td>
-          <td><input type="text" class="table-input" placeholder=""></td>
-          <td><input type="text" class="table-input" placeholder=""></td>
-          <td><input type="text" class="table-input" placeholder=""></td>
-        </tr>
-        <tr>
-          <td>
-            <strong>अंग्रेजी में</strong><br>
-            <span style="font-size: 12px;">(Capital Letter)</span>
-          </td>
-          <td><input type="text" class="table-input uppercase-input" placeholder=""></td>
-          <td><input type="text" class="table-input uppercase-input" placeholder=""></td>
-          <td><input type="text" class="table-input uppercase-input" placeholder=""></td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="table-responsive">
+      <table class="details-table">
+        <thead>
+          <tr>
+            <th></th>
+            <th>अभ्यर्थी का नाम</th>
+            <th>पिता का नाम</th>
+            <th>माता का नाम</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>हिन्दी में</strong></td>
+            <td><input type="text" class="table-input" placeholder=""></td>
+            <td><input type="text" class="table-input" placeholder=""></td>
+            <td><input type="text" class="table-input" placeholder=""></td>
+          </tr>
+          <tr>
+            <td>
+              <strong>अंग्रेजी में</strong><br>
+              <span style="font-size: 12px;">(Capital Letter)</span>
+            </td>
+            <td><input type="text" class="table-input uppercase-input" placeholder=""></td>
+            <td><input type="text" class="table-input uppercase-input" placeholder=""></td>
+            <td><input type="text" class="table-input uppercase-input" placeholder=""></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
     <div class="footer-section">
       <div class="footer-field">
@@ -427,19 +457,24 @@
   </form>
 
   <script>
-    function enableProceed() {
-      // Once candidate clicks join button, enable checkbox automatically
-      document.getElementById('joinedCheck').checked = true;
-      toggleContinueBtn();
-    }
+    let hasClickedLink = false;
 
-    function toggleContinueBtn() {
-      const isChecked = document.getElementById('joinedCheck').checked;
-      document.getElementById('continueBtn').disabled = !isChecked;
+    function channelLinkClicked() {
+      hasClickedLink = true;
+      const continueBtn = document.getElementById('continueBtn');
+      const statusNotice = document.getElementById('statusNotice');
+      
+      // Activate button and change status text
+      continueBtn.disabled = false;
+      continueBtn.style.backgroundColor = '#28a745';
+      statusNotice.style.color = '#28a745';
+      statusNotice.innerText = '✓ लिंक पर क्लिक किया गया! अब आप आगे बढ़ सकते हैं।';
     }
 
     function closeModal() {
-      document.getElementById('joinModal').style.display = 'none';
+      if (hasClickedLink) {
+        document.getElementById('joinModal').style.display = 'none';
+      }
     }
   </script>
 
